@@ -1,0 +1,15 @@
+
+<div class = "header">
+	<h3 class="logo"><span style="font-family:raleway; font-size:.5em; margin:10px">[dress]</span>Insouciantly </h3>
+	<%= link_to(image_tag("icon.png", :height => "30px", :class => "icon"), ) %>
+	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
+	<ul class = "header-menu">about</ul>
+	<ul class = "header-menu">sewing</ul>
+	<ul class = "header-menu">weaving</ul>
+	<ul class = "header-menu">tutorials</ul>
+	<ul class = "header-menu">books</ul>
+</div>
+<%= image_tag("welcome.jpg",:width => "100%") %>
+<div class = "content" style="height:1080px">
+<%= yield %>
+</div>

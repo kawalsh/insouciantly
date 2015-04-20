@@ -2,19 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@font-face {
-	font-family: raleway;
-	src: url(images/raleway-regular.tff)
-}
+
 
 .btn {
   -webkit-border-radius: 14;
   -moz-border-radius: 14;
   border-radius: 14px;
   font-family: Georgia;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 30px;
-  background: #14a88a;
+  background: #699596;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
