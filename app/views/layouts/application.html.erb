@@ -7,20 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <div class = "header">
-	<h3 class="logo"><span style="font-family:raleway; font-size:.5em; margin:10px">[dress]</span>Insouciantly </h3>
-	<%= link_to(image_tag("icon.png", :height => "30px", :class => "icon"), ) %>
-	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
-	<ul class = "header-menu">about</ul>
-	<ul class = "header-menu">sewing</ul>
-	<ul class = "header-menu">weaving</ul>
-	<ul class = "header-menu">tutorials</ul>
-	<ul class = "header-menu">books</ul>
+	<%= link_to(image_tag("icon2.jpg", :class => "icon"), ) %>
+	<%= yield :title %>
+	<%= link_to(image_tag("hamburger.jpg", :height => "30px", :class => "hamburger"), ) %>
+	<ul class = "header-menu"><%= link_to "about", about_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "sewing", sew_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "weaving", weave_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "tutorials",learn_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "books",read_index_url %></ul>
 </div>
-<%= image_tag("comingsoon.jpg", :title => "coming soon", :alt => "DRESS INSOUCIANTLY is coming soon!", :width => "100%") %>
-<div style="font-family:raleway; font-size:12px; display=block">
-	This website and blog will be coming soon! Photo by Caroline Okun of <a href="http://www.brainsarepretty.com">Brains Are Pretty</a>
+<div class = "fizz">
+	<%= image_tag("transparency2.png", :class => "transparency") %>
+	<%= yield :fizz %>
 </div>
-<div class = "content" style="height:1080px">
-<%= yield %>
+<div class = "sidebar">
+	<%= yield :sidebar %>
+</div>
+<div class = "content">
+	<%= yield %>
 </div>
 </html>
