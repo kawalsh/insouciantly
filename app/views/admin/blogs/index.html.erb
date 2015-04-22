@@ -1,0 +1,10 @@
+<% content_for :sidebar do %>
+	<ul> <%= link_to "blogs", admin_blogs_url %> </ul>
+	<ul> <%= link_to "books", admin_books_url %> </ul>
+	<ul> <%= link_to "photos", admin_photos_url %> </ul>
+	<ul> <%= link_to "projects", admin_projects_url %> </ul>
+<% end %>
+<h2 style="display:inline-block">Pending Blog Updates</h2>
+<div style="float:right; display:inline-block">
+	<%= link_to "create new", new_admin_blog_path, :class => "btn" %>
+</div>

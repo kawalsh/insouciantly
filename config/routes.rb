@@ -8,12 +8,21 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  match "admin" => "admin/blogs#index", via: [:get,:post]
 
   resources :about
   resources :sew
   resources :weave
   resources :learn
   resources :read
+
+  namespace :admin do 
+    resources :blogs
+    resources :books
+    resources :photos
+    resources :projects
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
