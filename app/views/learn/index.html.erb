@@ -1,10 +1,32 @@
 <% content_for :title do %>
-	<h3 class="logo"><span style="font-family:raleway; font-size:.5em; margin:10px">[learn]</span>Insouciantly </h3>
+	<h3 class="logo"><span class="verb">[learn]</span>Insouciantly </h3>
 <% end %>
 <% content_for :fizz do  %>
 	<span class = "fizztext">
-		Anthropology Tee
+		<%= @featured_blog.title %>
 	</span>
-	<%= image_tag("learn.jpg", :class => "fizz") %>
+	<%= image_tag(@featured_blog.fizz_photo.filepath, :class => "fizz") %>
 <% end %>
-<h1>learn</h1>
+<div class="date">
+	<%= @featured_blog.posted_at.strftime("%B %-d, %Y") %>
+</div>
+<%= @featured_blog.body.html_safe %>
+<div>
+	<%= render :partial => "shared/lightbox", :locals => {:photos => @featured_blog.photos, :size => "200" } %>
+</div>
+<div class = "tag_container">
+	<% @featured_blog.tags.each do |tag| %>
+		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+	<% end %>
+</div>
+
+<% content_for :sidebar do %>
+	<h2><%= link_to "Other Tutorials", "www.google.com" %></h2>
+	<% @learn_feed.each do |blog| %>
+		<div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
+		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
+		<b><%= link_to blog.title, blog_url(blog) %></b><br />
+		<%= blog.body[0,130].html_safe %>
+		<hr />
+	<% end %>
+<% end %>

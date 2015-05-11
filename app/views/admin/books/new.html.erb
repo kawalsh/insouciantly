@@ -1,0 +1,38 @@
+<h1>New Book</h1>
+<%
+  pending_blogs = Blog.where(:status => 'pending')
+  blog_list = Hash.new
+  pending_blogs.each do |blog|
+    blog_list[blog.title] = blog.id
+  end
+%>
+<%= form_for @book, :url => "/admin/books" do |f| %>
+  <p>
+    <%= f.label :blog_id %>
+    <%= f.select :blog_id, blog_list %>
+  </p>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :author %><br />
+    <%= f.text_field :first_name %>
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :stars %><br />
+    <%= f.text_field :stars %>
+  </p>
+  <p>
+    <%= f.label :goodreads_link %><br />
+    <%= f.text_field :goodreads_link %>
+  </p>
+  <p>
+    <%= f.label :gr_html %><br />
+    <%= f.text_area :gr_html, :size => "10x10" %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Insouciantly</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<div class = "header">
+	<%= link_to(image_tag("icon2.jpg", :class => "icon"), ) %>
+	<%= yield :title %>
+	<%= link_to(image_tag("hamburger.jpg", :height => "30px", :class => "hamburger"), ) %>
+	<ul class = "header-menu"><%= link_to "about", about_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "sewing", sew_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "weaving", weave_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "tutorials",learn_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "books",read_index_url %></ul>
+</div>
+<div class = "sidebar" style="margin-top:40px">
+	<ul> <%= link_to "blogs", admin_blogs_url %> </ul>
+	<ul> <%= link_to "books", admin_books_url %> </ul>
+	<ul> <%= link_to "photos", admin_photos_url %> </ul>
+	<ul> <%= link_to "projects", admin_projects_url %> </ul>
+	<hr />
+	<%= yield :sidebar %>
+</div>
+<div class = "content" style="margin-top:40px">
+	<%= yield %>
+</div>
+</html>

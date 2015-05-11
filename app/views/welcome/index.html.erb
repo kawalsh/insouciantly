@@ -3,21 +3,62 @@
 <% end %>
 <% content_for :fizz do  %>
 	<%= image_tag("welcome.jpg", :class => "fizz") %>
+	<div class="fizztext" style="font-size:1em;">
+		<span style="font-size:2em">Welcome to dress insouciantly! </span>This is my first attempt at creating one of those blog
+		things that were cool 10 years ago. I like sewing, and want an excuse to improve the
+		quality of photographs I take of sewing projects. I recently bought a loom, and so you'll
+		likely see a bunch of weaving projects. I also love to read, and like to share books I
+		love. I actually implemented the goodreads api for book information, and did you notice
+		that you can pin things! Future updates will hopefully include the ability for anyone
+		to leave comments!
+	</div>
 <% end %>
-<% content_for :sidebar do %>
-	<h2>This would be a blog feed</h2>
-	this would be a blog snippet.... Lorem ipsum dolorit
-	<h2>another blog title</h2>
-	another snippet like bit. This one might have an image with it. 
-	<%= image_tag("welcome.jpg", :width => "100%") %>
-	<h2>yesterday i woke up...</h2>
-	and then some boring bloglike things happened which totally don't matter at all.
-<% end %>
-<h1> I'M MAKING A WEBSITE</h1>
-<div style="font-family:raleway; font-size:18px; width:75%; padding-left:5%; display:block">
-Hello. My name is Kelly. I've been vaguely sort of maintainging a quote-un-quote "blog" at <a href="http://insouciantly.tumblr.com"> insouciantly.tumblr.com</a> for a number of years, but recently I've felt the call to build something a little more personal for myself. That something will probably live here. I don't know yet what that something will be, but it will probably have very similar content to the tumblr. It will probably have a lot about sewing, and weaving, and other stuff I make. It'll have a lot of pictures, and occasionally I'll probably ramble on about something random. For now, I'm curious about why you're here, and if and why and how I can pursuade you to return. If you wouldn't mind filling out the lovely form below, I'll try to put what you have to say to good use. 
+
+
+<div id="container">
+	<% @blogs.each do |blog| %>
+  	<div class="masonry-item">
+			<%= image_tag(blog.fizz_photo.filepath, :class => "masonry-photo") %>
+			<div class="date" style="font-size:1em"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
+			<h2><%= link_to(blog.title, blog_path(blog)) %></h2>
+			<% if blog.book %>
+				<div style="padding-left:5px">
+					<%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => false} %>
+				</div>
+			<% end %>
+			<div style="margin:5px">
+				<%= blog.body[0,500].html_safe %>
+				<% if blog.body.length > 500 %>
+					...<%= link_to("[keep reading]", blog_path(blog)) %>
+				<% end %>
+				<% if blog.book %>
+					<div>
+						<%= render :partial => "shared/gr_book", :locals => {:book => blog.book, :info => true} %>
+					</div>
+				<% elsif blog.photos.length > 1 %>
+					<% rand = Random.new.rand(blog.photos.length) %>
+					<% photo = blog.photos[rand] %>
+					<%= image_tag(photo.filepath, :class => "masonry-photo") %>
+				<% end %>
+			</div>
+			<div style="padding:8px">
+		    <% blog.tags.each do |tag| %>
+		  		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+		  	<% end %>
+		  </div>
+		</div>
+	<% end %>
 </div>
 
-<div style = "text-align:center; padding-top:60px; padding-bottom:60px; display=block">
-<a class = "btn" href= "https://docs.google.com/forms/d/1QQcIsORL0wKYb9okrybvybGZe6Zo6H7rNtZ3uP7piXI/viewform?usp=send_form"> I'll answer your questions! </a>
-</div>
+
+<script>
+	var container = document.querySelector('#container');
+	var msnry
+	imagesLoaded( container, function() {
+		msnry = new Masonry( container, {
+		// options
+		columnWidth: 5,
+		itemSelector: '.masonry-item'
+		});
+	});
+</script>

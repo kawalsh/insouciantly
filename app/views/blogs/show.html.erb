@@ -1,0 +1,39 @@
+<% content_for :title do %>
+	<h3 class="logo"><span class="verb">[blog]</span>Insouciantly </h3>
+<% end %>
+
+<% content_for :fizz do  %>
+	<span class = "fizztext">
+		<%= @blog.title %>
+		<% if @blog.book %>
+			<%= render :partial => "shared/book_stars", :locals => {:book => @blog.book, :size => "0.75", :white => true} %>
+		<% end %>
+	</span>
+	<%= image_tag(@blog.fizz_photo.filepath, :class => "fizz") %>
+<% end %>
+
+<%= @blog.body.html_safe %>
+<div>
+	<%= render :partial => "shared/lightbox", :locals => {:photos => @blog.photos, :size => "200" } %>
+</div>
+
+<% content_for :sidebar do %>
+  <div class = "date"><%= @blog.posted_at.strftime("%B %-d, %Y") %></div>
+	<% if @blog.project %>
+    <h2>This blog is about a project: </h2>
+		<%= link_to @blog.project.name + " Project", root_url %> <br />
+		<%= @blog.project.short_description %>
+	<% end %>
+  <% if !@blog.books.blank? %>
+    <h2>This blog is about a book: </h2>
+    <% @blog.books.each do |book| %>
+      <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true} %>
+		<% end %>
+	<% end %>
+  <hr />
+  <div>
+    <% @blog.tags.each do |tag| %>
+  		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+  	<% end %>
+  </div>
+<% end %>

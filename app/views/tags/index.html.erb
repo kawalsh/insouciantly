@@ -1,0 +1,9 @@
+<% content_for :title do %>
+  <h3 class="logo"><span class="verb">[search]</span>Insouciantly </h3>
+<% end %>
+<h1 style="margin-top:5px">Tag Search:</h1>
+<%= render :partial => "search", :locals => {:tag => @tag} %>
+<br /><br />
+(My search isn't really fully fledged yet, it will only find blogs which are tagged with the specific
+phrase you're looking for. It doesn't search the body of the blog text, YET! but I'm sure, someday, I'll
+bother to put that in.)

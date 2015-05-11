@@ -1,0 +1,12 @@
+<%= form_tag(tags_url, :method => :get) do %>
+  <%= label_tag(:tag_phrase, "search tags")%>
+  <%= text_field_tag(:tag_phrase) %>
+  <%= select_tag(:view, options_for_select([
+      ["anything", ""],
+      ["blogs", "blogs"],
+      ["projects", "projects"],
+      ["photos", "photos"],
+      ["companies", "companies"]
+      ])) %>
+  <%= submit_tag("search") %>
+<% end %>

@@ -1,0 +1,28 @@
+<% content_for :sidebar do %>
+  <h2> edit tags: </h2>
+  <% @project.tags.each do |tag| %>
+    <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @project} %>
+  <% end %>
+  <br />
+  <%= form_tag(edit_admin_project_url(@project), :method => :get) do %>
+    <p>Tag: <%= text_field_tag :tag %></p>
+    <p>Tag Type: <%= text_field_tag :tag_type %></p>
+    <%= submit_tag "add tag" %>
+  <% end %>
+<% end %>
+
+<h1>Edit Project</h1>
+<%= form_for(@project, :url => url_for(:action=>"update", :controller=>"admin/projects", :id =>@project.id)) do |f| %>
+
+  <p><%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :short_description %><br />
+    <%= f.text_area :short_description, :size => "30x8"%>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

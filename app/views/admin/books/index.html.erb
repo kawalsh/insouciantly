@@ -1,0 +1,43 @@
+<% content_for :sidebar do %>
+  <%= link_to "create a book", new_admin_book_path %>
+<% end %>
+<h1>Books</h1>
+<table>
+  <% Book.find_each do |book| %>
+    <tr>
+      <td>
+        <%= book.id %>
+      </td>
+      <td style = "width:15%">
+        <% if book.blog.fizz_photo %>
+          <%= image_tag(book.blog.fizz_photo.filepath, :width => "100%") %>
+        <% else %>
+          no photo
+        <% end %>
+      </td>
+      <td style = "width:20%">
+        <% for i in 1..5 %>
+      		<% if i <= book.stars %>
+      			<%= image_tag("star.png", :width => "15%") %>
+      		<% else %>
+            <%= image_tag("empty_star.png", :width => "15%") %>
+      		<% end %>
+      	<% end %>
+      </td>
+      <td>
+
+      </td>
+      <td>
+        
+      </td>
+      <td>
+        <% book.tags.each do |t| %>
+          <%= t.tag %>,
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "edit", edit_admin_book_path(book) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

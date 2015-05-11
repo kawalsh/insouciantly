@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Insouciantly</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<div class = "header">
+	<div class="icon">[d]<span style="font-family:signpainter;font-size:2em;">i</span></div>
+	<%= yield :title %>
+	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
+	<ul class = "header-menu"><%= link_to "about", about_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "sewing", sew_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "weaving", weave_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "tutorials",learn_index_url %></ul>
+	<ul class = "header-menu"><%= link_to "books",read_index_url %></ul>
+</div>
+
+<div class = "sidebar" style="margin-top:125px">
+  <%= yield :sidebar %>
+</div>
+
+<div class = "content" style="margin-top:125px">
+  <%= yield %>
+</div>
+
+</html>

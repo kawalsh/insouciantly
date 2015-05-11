@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   resources :weave
   resources :learn
   resources :read
+  resources :blogs
+  resources :projects
+  resources :tags
 
-  namespace :admin do 
+  namespace :admin do
     resources :blogs
     resources :books
     resources :photos

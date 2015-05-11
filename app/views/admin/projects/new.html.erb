@@ -1,0 +1,15 @@
+<h1>New Project</h1>
+<%= form_for @project, :url => "/admin/projects" do |f| %>
+
+  <p><%= f.label "Name" %></p>
+  <p>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :short_description %><br />
+    <%= f.text_area :short_description, :size => "30x10"%>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

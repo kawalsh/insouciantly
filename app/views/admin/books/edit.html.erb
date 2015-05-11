@@ -1,0 +1,22 @@
+<h1>Edit Book</h1>
+<%= form_for(@book, :url => url_for(:action=>"update", :controller=>"admin/books", :id =>@book.id)) do |f| %>
+  <p>
+    <%= f.label :blog %>: <%= @book.blog.title %>
+    <%= f.text_field :blog_id %>
+  </p>
+  <p>
+    <%= f.label :stars %><br />
+    <%= f.text_field :stars %>
+  </p>
+  <p>
+    Goodreads API internal ID:<br />
+    <%= f.text_field :gr_id %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "shared/gr_book", :locals => {:book => @book, :info => true} %>
+<% end %>

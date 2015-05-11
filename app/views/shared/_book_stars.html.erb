@@ -1,0 +1,15 @@
+<% for i in 1..5 %>
+  <% if i <= book.stars %>
+    <% if white %>
+      <%= image_tag("star-white.png", :style => "width:#{size}em;") %>
+    <% else %>
+      <%= image_tag("star.png", :style => "width:#{size}em;") %>
+    <% end %>
+  <% else %>
+    <% if white %>
+      <%= image_tag("empty_star-white.png", :style => "width:#{size}em;") %>
+    <% else %>
+      <%= image_tag("empty_star.png", :style => "width:#{size}em;") %>
+    <% end %>
+  <% end %>
+<% end %>

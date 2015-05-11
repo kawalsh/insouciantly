@@ -1,0 +1,31 @@
+<% content_for :sidebar do %>
+  <%= render :partial => "sidebar" %>
+<% end %>
+
+<h1>Edit Blog</h1>
+<%= form_for(@blog, :url => url_for(:action=>"update", :controller=>"admin/blogs", :id =>@blog.id)) do |f| %>
+
+  <p><%= f.label "Title" %></p>
+  <p>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= @blog.project.name if @blog.project %>
+    <%= f.label :project_id %>
+    <%= f.text_field :project_id %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :size => "100x20"%>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
+<div>
+  <h2>Photos:</h2>
+  <%= image_tag(@blog.fizz_photo.filepath, :width => "20%") if @blog.fizz_photo %>
+  <%= render :partial => "shared/lightbox", :locals => {:photos => @blog.photos, :size => "200" } %>
+</div>

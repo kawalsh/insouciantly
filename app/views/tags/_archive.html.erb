@@ -1,0 +1,29 @@
+<% content_for :sidebar do %>
+  <h2>Archive by year:</h2>
+  <% Tag.where(:tag_type => "archive").each do |t| %>
+    <%= render :partial => "shared/tag", :locals => {:tag => t} %>
+  <% end %>
+  <% if tag.tag_type == "archive" %>
+    <h2><%=tag.tag%> Blogs</h2>
+    <% tag.blogs.where(:status => "posted").each do |blog| %>
+      <div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
+      <%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
+      <b><%= link_to blog.title, blog_url(blog) %></b><br />
+      <%= blog.body[0,130].html_safe %>
+      <hr />
+    <% end %>
+  <% end %>
+<% end %>
+<h1>Archive</h1>
+So this blog started out as a wee fun tumblr account back in 2011.
+In early 2015 I got tired of the generic platform (and the ceaseless ads tumblr kept embedding in).
+Plus, I am actually a webdeveloper, and I thought it would be an interesting activity to develop my
+own blog platform. This is what became of it. I imported a lot of my favorite old tumblr posts, and
+that's what you'll find here. The photos are of a significantly lower quality, the writing probably
+has typos, and I might refer to things that don't actually exist here (as I was too lazy to bring
+it all over). But take a look, browse by year in the menu to the left!
+<hr />
+<% tag.blogs.where(:status => "posted").each do |blog| %>
+  <%= render :partial => "shared/blog", :locals => {:blog => blog} %>
+  <hr />
+<% end %>

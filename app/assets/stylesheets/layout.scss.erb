@@ -1,0 +1,263 @@
+@import '<%= "colors/colors" + Random.new.rand(6).to_s %>';
+@font-face {
+	font-family: raleway;
+	src: url(raleway-regular.ttf)
+}
+@font-face {
+	font-family: signpainter;
+	src: url(sign-painter.otf)
+}
+
+body {
+	background-color:$light-color;
+	font-family:raleway;
+	color:$primary-color;
+	font-size:1em;
+	a {
+			color: $dark-color;
+			font-weight:bold;
+	}
+	a:hover {
+			color: $contrast-color;
+	}
+}
+
+h1 {
+	font-family:raleway;
+	font-size:2.5em;
+	font-weight:bold;
+	color:$contrast-color;
+	line-height:1em;
+}
+h2 {
+	font-family:raleway;
+	font-size:1.375em;
+	color:$contrast-color;
+	margin:5px
+}
+h3 {
+	font-family:signpainter;
+	font-size:5em;
+	font-weight:bold;
+	color:$primary-color;
+	margin:20px 0px 30px 0px;
+}
+h4 {
+	font-family:raleway;
+	font-size:1.5em;
+	font-weight:bold;
+	color:$contrast-color;
+	margin:3px;
+}
+
+a:-webkit-any-link{
+	text-decoration:none !important;
+	background-color:transparent;
+}
+
+.book_image {
+	display:inline-block;
+	width:48%;
+}
+.book_info {
+	display:inline-block;
+	width:48%;
+}
+.masonry-item-lightbox {
+	width:280px;
+	border-radius: 9px;
+	overflow:hidden;
+	margin:3px;
+}
+.masonry-item {
+	width:250px;
+	background-color:white;
+	border-radius: 9px;
+	margin:5px;
+	overflow:hidden;
+}
+.masonry-photo{
+	width:100%
+}
+
+
+@media only screen and (min-width: 900px) {
+
+	.header {
+		width:100%;
+		top:0px;
+    left:0px;
+    position:fixed;
+		background:$light-color;
+    margin:0px;
+    padding:10px 0px 5px 0px;
+    border-bottom:5px solid $dark-color;
+	  z-index:1000;
+	}
+	.header-menu {
+		display:inline-block;
+		font-family:raleway;
+		font-size:1.5em;
+		font-color:$dark-color;
+		margin:0px;
+		width:18%;
+		text-align:center;
+		padding:0;
+		a {
+		    color: $dark-color;
+		    font-weight:bold;
+		}
+		a:hover {
+		    color: $contrast-color;
+		}
+	}
+	.sidebar {
+		background-color:white;
+		width:18%;
+		border:2px solid $dark-color;
+		display:inline-block;
+		padding:5px;
+		position:absolute;
+		margin-bottom:15px;
+	}
+	.content {
+		background-color:white;
+		width:75%;
+		padding:2%;
+		border: 2px solid $dark-color;
+		display:inline-block;
+		margin-left:21%;
+	}
+	.fizz {
+		width:100%;
+		margin-top:53px;
+		position:relative;
+		z-index:10;
+	}
+	.fizztext {
+		font-family:raleway;
+		font-size:3.25em;
+		bottom:.75em;
+		padding:10px;
+		opacity:.9;
+		width:98%;
+		left:.5em;
+		position:absolute;
+		z-index:101;
+		line-height:1em;
+		background-color:$contrast-color;
+		color:white;
+	}
+	.logo {
+		display:block;
+		width:43%;
+		text-align:right;
+		margin:0;
+	}
+	.verb {
+		font-family:raleway;
+		font-size:.5em;
+		margin:10px;
+		color:$contrast-color;
+	}
+	.icon {
+		display:none;
+	}
+	.hamburger {
+		display:none;
+	}
+}
+
+@media only screen and (min-width: 0px) and (max-width: 899px) {
+	.header {
+		width:100%;
+	    position:fixed;
+	    top:0px;
+	    left:0px;
+	    height:35px;
+	    background-color:$light-color;
+	    width:100%;
+	    margin:0px;
+	    padding-bottom:5px;
+	    border-bottom:5px solid $dark-color;
+	    z-index:1000;
+	}
+	.header-menu {
+		display:none;
+		font-size:1.25em;
+		font-family:raleway;
+		font-weight:bold;
+	}
+	.content {
+		background-color:white;
+		left:0px;
+		top:10%;
+		margin:0;
+		width:96%;
+		padding:2%;
+		padding-bottom:70px;
+	}
+	.fizz {
+		width:100%;
+		margin-top:22px;
+		position:relative;
+		z-index:10;
+	}
+	.fizztext {
+		font-family:raleway;
+		font-size:1.5em;
+		bottom:.75em;
+		padding:10px;
+		opacity:.9;
+		width:98%;
+		left:.5em;
+		position:absolute;
+		z-index:101;
+		line-height:1em;
+		background-color:$contrast-color;
+		color:white;
+	}
+	.sidebar {
+		display:none;
+	}
+	.logo {
+		display:none;
+	}
+	.icon {
+		display:inline-block;
+		font-size:1.5em;
+		float:down;
+	}
+	.hamburger {
+		display:inline-block;
+		float:right;
+		padding:4px 4px 0 0 ;
+		height:35px;
+	}
+}
+
+.tag {
+	border:1px solid $contrast-color;
+	display:inline-block;
+	margin:2px 0 2px 0;
+	padding:3px;
+	a {
+			color: $contrast-color;
+			font-weight:bold;
+	}
+	a:hover {
+			color: white;
+			background-color: $contrast-color;
+	}
+}
+.tag_container {
+	float:right;
+}
+.date {
+	font-family:signpainter;
+	float:right;
+	font-size:1.5em;
+	font-weight:bold;
+	padding:2px;
+	color:$contrast-color;
+}

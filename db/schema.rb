@@ -11,31 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422035703) do
+ActiveRecord::Schema.define(version: 20150503025421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blog_tags", force: true do |t|
-    t.integer "blog_id"
-    t.integer "tag_id"
-  end
-
   create_table "blogs", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                          null: false
     t.text     "body"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",     default: "pending"
+    t.datetime "posted_at"
+  end
+
+  create_table "blogs_tags", force: true do |t|
+    t.integer "blog_id"
+    t.integer "tag_id"
   end
 
   create_table "books", force: true do |t|
     t.integer "blog_id"
-    t.integer "stars",          null: false
-    t.string  "title",          null: false
-    t.string  "first_name",     null: false
-    t.string  "last_name",      null: false
-    t.string  "goodreads_link"
+    t.integer "stars",   null: false
+    t.integer "gr_id"
   end
 
   create_table "entries", force: true do |t|
@@ -45,20 +44,16 @@ ActiveRecord::Schema.define(version: 20150422035703) do
     t.datetime "updated_at"
   end
 
-  create_table "photo_tags", force: true do |t|
-    t.integer "photo_id"
-    t.integer "tag_id"
-  end
-
   create_table "photos", force: true do |t|
     t.string  "filename",                   null: false
     t.integer "blog_id"
     t.integer "project_id"
     t.boolean "fizz",       default: false, null: false
+    t.string  "credits",    default: ""
   end
 
-  create_table "project_tags", force: true do |t|
-    t.integer "project_id"
+  create_table "photos_tags", force: true do |t|
+    t.integer "photo_id"
     t.integer "tag_id"
   end
 
@@ -67,6 +62,11 @@ ActiveRecord::Schema.define(version: 20150422035703) do
     t.string   "short_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "projects_tags", force: true do |t|
+    t.integer "project_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", force: true do |t|

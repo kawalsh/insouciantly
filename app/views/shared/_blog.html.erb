@@ -1,0 +1,27 @@
+<div class = 'fizz' style = "margin-top:0px">
+  <%= image_tag("transparency2.png", :class => "transparency") %>
+  <span class = "fizztext">
+		<%= blog.title %>
+    <% if blog.book %>
+      <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => true} %>
+    <% end %>
+	</span>
+  <%= image_tag(blog.fizz_photo.filepath, :class => "fizz") if blog.fizz_photo %>
+</div>
+<div class="date">
+  <% if blog.status == "posted" %>
+    <%= blog.posted_at.strftime("%B %-d, %Y") %>
+  <% else %>
+    pending
+  <% end %>
+</div>
+<div>
+  <%= blog.body.html_safe %>
+</div>
+<% if blog.project %>
+  <h2><%= blog.project.name %> Gallery:</h2>
+<% end %>
+<% if blog.photos.length > 1 %>
+  <%= render :partial => "shared/lightbox", :locals => {:photos => blog.photos, :size => "200" } %>
+<% end %>
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>

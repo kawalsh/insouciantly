@@ -1,0 +1,32 @@
+<% content_for :sidebar do %>
+  <h2> edit tags: </h2>
+  <% @project.tags.each do |tag| %>
+    <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @project} %>
+  <% end %>
+  <br />
+  <%= form_tag(admin_project_url(@project), :method => :get) do %>
+    <p>Tag: <%= text_field_tag :tag %></p>
+    <p>Tag Type: <%= text_field_tag :tag_type %></p>
+    <%= submit_tag "add tag" %>
+  <% end %>
+<% end %>
+
+
+<h1><%= @project.name %></h1>
+<%= @project.short_description %>
+<div>
+  <h2>Photo Gallery:</h2>
+  <%= render :partial => "shared/lightbox", :locals => {:photos => @project.photos, :size => "200" } %>
+</div>
+<h2>Blogs:</h2>
+<% @project.blogs.each do |blog| %>
+  <div>
+    <div style="width:20%; margin-right:2%; display:inline-block;">
+      <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
+    </div>
+    <div style="width:77%; display:inline-block;">
+      <h4><%= link_to blog.title, admin_blog_path(blog) %></h4>
+      <%= blog.body[0,250].html_safe %>
+    </div>
+  </div>
+<% end %>

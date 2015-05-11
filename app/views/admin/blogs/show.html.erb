@@ -1,0 +1,10 @@
+<% content_for :sidebar do %>
+  <%= render :partial => "sidebar" %>
+<% end %>
+
+<div>
+	<%= link_to "edit", edit_admin_blog_path(@blog), :class => "btn" %>
+</div>
+<div>
+  <%= render :partial => "shared/blog", :locals => {:blog => @blog} %>
+</div>

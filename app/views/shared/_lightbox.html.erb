@@ -1,0 +1,44 @@
+<div class="popup-gallery">
+  <div id="container">
+    <% photos.each do |photo| %>
+      <% unless photo.fizz %>
+        <div class="masonry-item-lightbox">
+          <a href="<%=asset_path(photo.filepath)%>" title="<%=photo.credits%>">
+            <img src="<%=asset_path(photo.filepath)%>" width="100%">
+          </a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+  	$('.popup-gallery').magnificPopup({
+  		delegate: 'a',
+  		type: 'image',
+  		tLoading: 'Loading image #%curr%...',
+  		mainClass: 'mfp-img-mobile',
+  		gallery: {
+  			enabled: true,
+  			navigateByImgClick: true,
+  			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+  		},
+  		image: {
+  			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+  		}
+  	});
+  });
+</script>
+
+<script>
+	var container = document.querySelector('#container');
+	var msnry
+	imagesLoaded( container, function() {
+		msnry = new Masonry( container, {
+		// options
+		columnWidth: 5,
+		itemSelector: '.masonry-item-lightbox'
+		});
+	});
+</script>

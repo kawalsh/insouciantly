@@ -1,0 +1,28 @@
+<h2>All Projects</h2>
+
+<table>
+  <% @projects.each do |project| %>
+    <tr>
+      <td>
+        <%= project.id %>
+      </td>
+      <td style = "width:15%">
+        <% if project.fizz_photo %>
+          <%= image_tag(project.fizz_photo.filepath, :width => "100%") %>
+        <% else %>
+          no photo
+        <% end %>
+      </td>
+      <td>
+        <b><%= project.name %></b>
+      </td>
+      <td>
+        <%= project.short_description %>
+      </td>
+      <td>
+        <%= link_to "show", admin_project_path(project) %>
+        <%= link_to "edit", edit_admin_project_path(project) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

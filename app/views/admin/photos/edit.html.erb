@@ -1,0 +1,47 @@
+<%= asset_path(@photo.filepath) %>
+<%= image_tag(@photo.filepath, :width => "90%") %>
+
+<%= content_for :sidebar do %>
+  <h1>Edit Photo</h1>
+  <%= form_for(@photo, :url => url_for(:action=>"update", :controller=>"admin/photos", :id =>@photo.id)) do |f| %>
+    <p>
+      <%= f.text_field :filename %>
+    </p>
+
+    <p>
+      <%= f.label :credits %>
+      <%= f.text_field :credits %>
+    </p>
+
+    <p>
+      <%= @photo.project.name if @photo.project %><br />
+      <%= f.label :project_id %>
+      <%= f.text_field :project_id %>
+    </p>
+
+    <p>
+      <%= @photo.blog.title if @photo.blog %><br />
+      <%= f.label :blog_id %>
+      <%= f.text_field :blog_id %>
+    </p>
+
+    <p>
+      <%= f.label :fizz %><br />
+      <%= f.check_box :fizz %>
+    </p>
+
+    <p>
+      <%= f.submit "Save" %>
+    </p>
+  <% end %>
+  <h2> edit tags: </h2>
+  <% @photo.tags.each do |tag| %>
+    <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @photo} %>
+  <% end %>
+  <br />
+  <%= form_tag(edit_admin_photo_url(@photo), :method => :get) do %>
+    <p>Tag: <%= text_field_tag :tag %></p>
+    <p>Tag Type: <%= text_field_tag :tag_type %></p>
+    <%= submit_tag "add tag" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,27 @@
+<h1>New Photo</h1>
+<%= form_for @photo, :url => "/admin/photos" do |f| %>
+
+  <p>
+    <%= f.label :filename %>
+    <%= f.text_field :filename %>
+  </p>
+  <p>
+    <%= f.label :credits %>
+    <%= f.text_field :credits %>
+  </p>
+  <p>
+    <%= f.label :blog_id %><br />
+    <%= f.text_field :blog_id %>
+  </p>
+  <p>
+    <%= f.label :project_id %><br />
+    <%= f.text_field :project_id %>
+  </p>
+  <p>
+    <%= f.label "header photo" %>
+    <%= f.check_box :fizz %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

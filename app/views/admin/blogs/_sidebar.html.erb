@@ -1,0 +1,29 @@
+<h2>Blog Resources</h2>
+<% if @blog.project %>
+  <b>Project:</b>
+  <%= link_to @blog.project.name, admin_project_path(@blog.project) %>
+<% else %>
+  <%= link_to "add a project", new_admin_project_url, :target => "blank" %>
+<% end %>
+<br />
+<% if !@blog.books.blank? %>
+  <b>Books:</b>
+  <% @blog.books.each do |book| %>
+    <%= link_to book.title, admin_books_path(book) %>
+  <% end %>
+  <br />
+<% end %>
+<%= link_to "add a book", new_admin_book_url, :target => "blank" %>
+<br />
+<%= link_to "add a photo", new_admin_photo_url, :target => "blank" %>
+<br />
+<h2> edit tags: </h2>
+<% @blog.tags.each do |tag| %>
+  <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @blog} %>
+<% end %>
+<br />
+<%= form_tag(edit_admin_blog_url(@blog), :method => :get) do %>
+  <p>Tag: <%= text_field_tag :tag %></p>
+  <p>Tag Type: <%= text_field_tag :tag_type %></p>
+  <%= submit_tag "add tag" %>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="tag">
+  <%= tag.tag %>
+  <% if attached.is_a?(Blog) %>
+    <b><%= link_to "x", edit_admin_blog_path(attached, :commit => "remove_tag", :tag => tag) %></b>
+  <% elsif attached.is_a?(Project) %>
+    <b><%= link_to "x", edit_admin_project_path(attached, :commit => "remove_tag", :tag => tag) %></b>
+  <% elsif attached.is_a?(Photo) %>
+    <b><%= link_to "x", edit_admin_photo_path(attached, :commit => "remove_tag", :tag => tag) %></b>
+  <% end %>
+</div>

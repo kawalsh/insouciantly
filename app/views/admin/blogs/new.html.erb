@@ -1,1 +1,15 @@
 <h1>New Blog Entry</h1>
+<%= form_for @blog, :url => "/admin/blogs" do |f| %>
+
+  <p><%= f.label "Title" %></p>
+  <p>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :size => "100x20"%>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

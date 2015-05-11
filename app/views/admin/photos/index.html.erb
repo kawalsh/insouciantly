@@ -1,0 +1,32 @@
+<% content_for :sidebar do %>
+  <h2><%= link_to "new photo", new_admin_photo_path %></h2>
+<% end %>
+<h1>All Photos</h1>
+<table>
+  <% @photos.each do |photo| %>
+    <tr>
+      <td style = "width:15%">
+        <%= image_tag(photo.filepath, :width => "100%") %>
+      </td>
+      <td style="width:5%">
+        <% if photo.fizz %>
+          <%= image_tag("star.png", :width => "100%") %>
+        <% else %>
+          <%= image_tag("empty_star.png", :width => "100%") %>
+        <% end %>
+      </td>
+      <td>
+        <b><%= photo.project.name if photo.project %></b>
+      </td>
+      <td>
+        <b><%= photo.blog.title if photo.blog %></b>
+      </td>
+      <td>
+        <%= photo.credits %>
+      </td>
+      <td>
+        <%= link_to "edit", edit_admin_photo_path(photo) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
