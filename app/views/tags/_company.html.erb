@@ -1,5 +1,37 @@
-<% if tag.tag == "archive" %>
-  <%= render :partial => "archive", :locals => {:tag => tag} %>
-<% else %>
+<% if tag.tag == "archive" or tag.tag_type == "archive" %>
+  <% content_for :sidebar do %>
+    <h4>Archive by year:</h4>
+    <% Tag.where(:tag_type => "archive").each do |t| %>
+      <%= render :partial => "shared/tag", :locals => {:tag => t} %>
+    <% end %>
+  <% end %>
 
+  <h1>Archive:
+    <% if tag.tag_type == "archive" %>
+      <%= tag.tag %>
+    <% else %>
+      All
+    <% end %>
+  </h1>
+  So this blog started out as a wee fun tumblr account back in 2011.
+  In early 2015 I got tired of the generic platform (and the ceaseless ads tumblr kept embedding in).
+  Plus, I am actually a webdeveloper, and I thought it would be an interesting activity to develop my
+  own blog platform. This is what became of it. I imported a lot of my favorite old tumblr posts, and
+  that's what you'll find here. The photos are of a significantly lower quality, the writing probably
+  has typos, and I might refer to things that don't actually exist here (as I was too lazy to bring
+  it all over). But take a look, browse by year in the menu to the left!
+
+<% elsif tag.tag == "colette" %>
+  <h1> Colette Patterns </h1>
+  <a href="https://www.colettepatterns.com/">Colette Patterns</a> is one of my favorite pattern
+  companies. Colette has made her fame by making cute fasionable patterns easy to sew, and by giving
+  lots of guidance to new sewists. I've had a lot of success with her patterns. Her bust shape
+  doesn't usually fit my own, but her patterns are easy to modify.
+
+<% elsif tag.tag == "butterick" %>
+  <h1> Butterick Patterns </h1>
+  All projects that are made with <a href="http://butterick.mccall.com/">Butterick Patterns.</a>
 <% end %>
+<hr />
+<%= render :partial => "shared/blog_masonry",
+  :locals => {:masonryblogs => @blogs, :style => "border:2px solid #dae4b7;", :admin => false} %>

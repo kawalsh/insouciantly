@@ -1,96 +1,87 @@
 <% content_for :title do %>
-<h3 class="logo"><span class="verb">[search]</span>Insouciantly </h3>
+  <h3 class="logo"><span class="verb">[search]</span>Insouciantly </h3>
 <% end %>
 
-<% if @tag.tag == "archive" or @tag.tag_type == "archive" %>
-  <%= render :partial => "archive", :locals => {:tag => @tag} %>
+<% content_for :sidebar do %>
+  <h1>Tag Search:</h1>
+  <%= render :partial => "search", :locals => {:tag => @tag} %>
+<% end %>
+
+<% if !params[:view].nil? and params[:view] != ""%>
+  <% content_for :sidebar do %>
+    <h2> Searched for <%= params[:view]%> tagged "<%=@tag.tag%>" </h2>
+  <% end %>
+
+  <% if params[:view] == "blogs" %>
+    <%= render :partial => "shared/blog_masonry",
+      :locals => {:masonryblogs => @blogs, :style => "border:2px solid #dae4b7;", :admin => false} %>
+
+  <% elsif params[:view] == "books" %>
+    <% @books.each do |book| %>
+      <div style = "width:12%; display:inline-block">
+        <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false} %>
+      </div>
+    <% end %>
+
+  <% elsif params[:view] == "companies" %>
+    <%= render :partial => "company", :locals => {:tag => @tag} %>
+
+  <% elsif params[:view] == "photos" %>
+    <div>
+      <%= render :partial => "shared/lightbox", :locals => {:photos => @photos, :size => "200" } %>
+    </div>
+
+  <% end %>
+
 
 <% else %>
-  <h1 style="margin-top:5px">Tag Search:</h1>
-  <%= render :partial => "search", :locals => {:tag => @tag} %>
 
-  <% if !params[:view].nil? and params[:view] != ""%>
-    <h2> Search for <%= params[:view]%> tagged "<%=@tag.tag%>" </h2>
-    <% content_for :sidebar do %>
-      <h2>"<%=@tag.tag%>" Blogs</h2>
-      <% @blogs.each do |blog| %>
-        <div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
-        <%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
-        <b><%= link_to blog.title, blog_url(blog) %></b><br />
-        <%= blog.body[0,130].html_safe %>
-        <hr />
-      <% end %>
-    <% end %>
-
-
-    <% if params[:view] == "blogs" %>
-      <% @blogs.each do |blog| %>
-        <%= render :partial => "shared/blog", :locals => {:blog => blog} %>
-        <hr />
-      <% end %>
-
-    <% elsif params[:view] == "books" %>
-      <% @books.each do |book| %>
-        <div style = "width:15%; display:inline-block">
-          <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false} %>
-        </div>
-      <% end %>
-
-    <% elsif params[:view] == "companies" %>
-      <%= render :partial => "company", :locals => {:tag => @tag} %>
-
-    <% elsif params[:view] == "photos" %>
-      <%= render :partial => "shared/lightbox", :locals => {:photos => @photos, :size => "30%" } %>
-
-
-    <% end %>
-
-
-  <% else %>
-    <h2> Search for anything tagged "<%=@tag.tag%>" </h2>
-    <% content_for :sidebar do %>
-      <h2>Tagged: <%= @tag.tag %></h2>
+  <% content_for :sidebar do %>
+    <h2> Searched for anything tagged "<%=@tag.tag%>" </h2>
+    <div style="padding:10px">
       <% if @blogs.length > 0 then %><%= link_to "#{@blogs.length} blogs", tag_url(@tag, :view => "blogs") %><% end %><br />
       <% if @projects.length > 0 then %><%= link_to "#{@projects.length} projects", tag_url(@tag, :view => "projects") %><% end %><br />
       <% if @photos.length > 0 then %><%= link_to "#{@photos.length} photos", tag_url(@tag, :view => "photos") %><% end %><br />
-    <% end %>
+    </div>
+  <% end %>
 
-    <% if @blogs.length > 0 %>
-      <h2>There are <%=@blogs.length%> blogs tagged "<%= @tag.tag %>"</h2>
-      <% @blogs.each do |blog| %>
-        <div style="border-bottom:2px solid #deebe8; padding:5px 0 5px 0;">
-          <div style="width:20%; margin-right:2%; display:inline-block;">
-            <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
-          </div>
-          <div style="width:77%; display:inline-block;">
-            <h4><%= link_to blog.title, blog_path(blog) %></h4>
-            <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
-            <%= blog.body[0,150].html_safe %>
-          </div>
+  <% if @blogs.length > 0 %>
+    <h2>There are <%=@blogs.length%> blogs tagged "<%= @tag.tag %>"</h2>
+    <% @blogs.each do |blog| %>
+      <div style="border-bottom:2px solid #deebe8; padding:5px 0 5px 0;">
+        <div style="width:20%; margin-right:2%; display:inline-block;">
+          <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
         </div>
-      <% end %>
-    <% end %>
-
-    <% if @projects.length > 0 %>
-      <h2>There are <%=@projects.length%> projects tagged "<%= @tag.tag %>"</h2>
-      <% @projects.each do |project| %>
-        <div style="border-bottom:2px solid #deebe8; padding-top:5px;">
-          <div style="width:20%; margin-right:2%; display:inline-block;">
-            <%= image_tag(project.fizz_photo.filepath, :style => "width:100%;") %>
-          </div>
-          <div style="width:77%; display:inline-block;">
-            <h4><%= link_to project.name, project_path(project) %></h4>
-            <div class="date"><%= project.updated_at.strftime("%B %-d, %Y") %></div>
-            <%= project.short_description.html_safe %>
-          </div>
+        <div style="width:77%; display:inline-block;">
+          <h2><%= link_to blog.title, blog_path(blog) %></h2>
+          <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
+          <%= blog.body[0,150].html_safe %>
         </div>
-      <% end %>
-      <hr />
+      </div>
     <% end %>
+  <% end %>
 
-    <% if @photos.length > 0 %>
-      <h2>There are <%=@photos.length%> photos tagged "<%= @tag.tag %>"</h2>
+  <% if @projects.length > 0 %>
+    <h2>There are <%=@projects.length%> projects tagged "<%= @tag.tag %>"</h2>
+    <% @projects.each do |project| %>
+      <div style="border-bottom:2px solid #deebe8; padding-top:5px;">
+        <div style="width:20%; margin-right:2%; display:inline-block;">
+          <%= image_tag(project.fizz_photo.filepath, :style => "width:100%;") %>
+        </div>
+        <div style="width:77%; display:inline-block;">
+          <h2><%= link_to project.name, project_path(project) %></h2>
+          <div class="date"><%= project.updated_at.strftime("%B %-d, %Y") %></div>
+          <%= project.short_description.html_safe %>
+        </div>
+      </div>
+    <% end %>
+    <hr />
+  <% end %>
+
+  <% if @photos.length > 0 %>
+    <h2>There are <%=@photos.length%> photos tagged "<%= @tag.tag %>"</h2>
+    <div>
       <%= render :partial => "shared/lightbox", :locals => {:photos => @photos, :size => "100"} %>
-    <% end %>
+    </div>
   <% end %>
 <% end %>

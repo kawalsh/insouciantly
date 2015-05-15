@@ -1,27 +1,35 @@
-<div class = 'fizz' style = "margin-top:0px">
-  <%= image_tag("transparency2.png", :class => "transparency") %>
-  <span class = "fizztext">
-		<%= blog.title %>
-    <% if blog.book %>
-      <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => true} %>
-    <% end %>
-	</span>
-  <%= image_tag(blog.fizz_photo.filepath, :class => "fizz") if blog.fizz_photo %>
-</div>
+<% if fizz %>
+  <div class = 'fizz' style = "margin-top:0px">
+    <span class = "fizztext">
+  		<%= blog.title %>
+      <% if blog.book %>
+        <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => true} %>
+      <% end %>
+  	</span>
+    <%= image_tag(blog.fizz_photo.filepath, :class => "fizz") if blog.fizz_photo %>
+  </div>
+<% end %>
+
 <div class="date">
   <% if blog.status == "posted" %>
     <%= blog.posted_at.strftime("%B %-d, %Y") %>
   <% else %>
     pending
   <% end %>
+  <br />
+  <div class="fb-like" style="float:left;" data-href=<%= blog_url(blog)%> data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
 </div>
-<div>
-  <%= blog.body.html_safe %>
+
+<%= blog.body.html_safe %>
+
+<% if blog.not_fizz_photos %>
+  <div>
+    <%= render :partial => "shared/lightbox", :locals => {:photos => blog.not_fizz_photos, :size => "200" } %>
+  </div>
+<% end %>
+
+<div class = "tag_container">
+	<% blog.tags.each do |tag| %>
+		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+	<% end %>
 </div>
-<% if blog.project %>
-  <h2><%= blog.project.name %> Gallery:</h2>
-<% end %>
-<% if blog.photos.length > 1 %>
-  <%= render :partial => "shared/lightbox", :locals => {:photos => blog.photos, :size => "200" } %>
-<% end %>
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>

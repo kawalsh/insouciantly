@@ -25,7 +25,7 @@
       <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
     </div>
     <div style="width:77%; display:inline-block;">
-      <h4><%= link_to blog.title, admin_blog_path(blog) %></h4>
+      <h2><%= link_to blog.title, admin_blog_path(blog) %></h2>
       <%= blog.body[0,250].html_safe %>
     </div>
   </div>

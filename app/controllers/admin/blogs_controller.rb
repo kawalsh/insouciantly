@@ -3,7 +3,7 @@ class Admin::BlogsController < ApplicationController
 	layout "admin"
 
 	def index
-		@pending = Blog.where(:status => 'pending')
+		@pending = Blog.where(:status => 'pending').order("created_at DESC")
 	end
 
 	def show

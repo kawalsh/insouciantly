@@ -3,62 +3,15 @@
 <% end %>
 <% content_for :fizz do  %>
 	<%= image_tag("welcome.jpg", :class => "fizz") %>
-	<div class="fizztext" style="font-size:1em;">
+	<div class="fizztext" style="font-size:1em; margin-bottom:10px; margin-left:5px;">
 		<span style="font-size:2em">Welcome to dress insouciantly! </span>This is my first attempt at creating one of those blog
 		things that were cool 10 years ago. I like sewing, and want an excuse to improve the
 		quality of photographs I take of sewing projects. I recently bought a loom, and so you'll
 		likely see a bunch of weaving projects. I also love to read, and like to share books I
-		love. I actually implemented the goodreads api for book information, and did you notice
-		that you can pin things! Future updates will hopefully include the ability for anyone
-		to leave comments!
+		love. <span style="font-size:1.5em">Click on a post below to read more!</span> Or on a topic above.
+		<span style="font-size:0.8em">(I recomment the "First real post" entry).</span>
 	</div>
 <% end %>
 
-
-<div id="container">
-	<% @blogs.each do |blog| %>
-  	<div class="masonry-item">
-			<%= image_tag(blog.fizz_photo.filepath, :class => "masonry-photo") %>
-			<div class="date" style="font-size:1em"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
-			<h2><%= link_to(blog.title, blog_path(blog)) %></h2>
-			<% if blog.book %>
-				<div style="padding-left:5px">
-					<%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => false} %>
-				</div>
-			<% end %>
-			<div style="margin:5px">
-				<%= blog.body[0,500].html_safe %>
-				<% if blog.body.length > 500 %>
-					...<%= link_to("[keep reading]", blog_path(blog)) %>
-				<% end %>
-				<% if blog.book %>
-					<div>
-						<%= render :partial => "shared/gr_book", :locals => {:book => blog.book, :info => true} %>
-					</div>
-				<% elsif blog.photos.length > 1 %>
-					<% rand = Random.new.rand(blog.photos.length) %>
-					<% photo = blog.photos[rand] %>
-					<%= image_tag(photo.filepath, :class => "masonry-photo") %>
-				<% end %>
-			</div>
-			<div style="padding:8px">
-		    <% blog.tags.each do |tag| %>
-		  		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
-		  	<% end %>
-		  </div>
-		</div>
-	<% end %>
-</div>
-
-
-<script>
-	var container = document.querySelector('#container');
-	var msnry
-	imagesLoaded( container, function() {
-		msnry = new Masonry( container, {
-		// options
-		columnWidth: 5,
-		itemSelector: '.masonry-item'
-		});
-	});
-</script>
+<%= render :partial => "shared/blog_masonry",
+	:locals => {:masonryblogs => @blogs, :style => "", :admin => false} %>

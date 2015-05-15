@@ -7,9 +7,10 @@
 <% end %>
 <br />
 <% if !@blog.books.blank? %>
-  <b>Books:</b>
+  <b>Books:</b><br />
   <% @blog.books.each do |book| %>
-    <%= link_to book.title, admin_books_path(book) %>
+    <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false} %>
+    <br />
   <% end %>
   <br />
 <% end %>

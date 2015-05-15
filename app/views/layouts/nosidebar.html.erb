@@ -9,6 +9,10 @@
 
 <div class = "header">
 	<div class="icon">[d]<span style="font-family:signpainter;font-size:2em;">i</span></div>
+  <div class="home">
+    <%= link_to "home", root_url %>&nbsp&nbsp&nbsp&nbsp
+    <%= link_to "search", tags_path %>
+  </div>
 	<%= yield :title %>
 	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
 	<ul class = "header-menu"><%= link_to "about", about_index_url %></ul>

@@ -1,0 +1,57 @@
+<div id="container">
+  <% masonryblogs.each do |blog| %>
+    <div class="masonry-item" style="<%= style %>">
+      <%= image_tag(blog.fizz_photo.filepath, :class => "masonry-photo") %>
+      <% if admin %>
+        <%= link_to "edit", edit_admin_blog_path(blog) %> >>
+        <%= link_to "post", edit_admin_blog_path(blog, :commit => "publish") %>
+      <% end %>
+      <div class="date" style="font-size:1em; margin-right:5px;">
+        <% if blog.status == "posted" %>
+          <%= blog.posted_at.strftime("%m/%d/%y")%>
+        <% else %>
+          <%= blog.status %>
+        <% end %>
+      </div>
+      <h2><%= link_to(blog.title, blog_path(blog)) %></h2>
+      <% if blog.book %>
+        <div style="padding-left:5px">
+          <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => false} %>
+        </div>
+      <% end %>
+      <div style="margin:5px">
+        <%= blog.body[0,500].html_safe %>
+        <% if blog.body.length > 500 %>
+          ...<%= link_to("[keep reading]", blog_path(blog)) %>
+        <% end %>
+        <% if blog.book %>
+          <div style="width:80%; margin-left:8%; padding-top:5%;">
+            <%= render :partial => "shared/gr_book", :locals => {:book => blog.book, :info => true} %>
+          </div>
+        <% elsif (p = blog.not_fizz_photos) %>
+          <% rand = Random.new.rand(p.length) %>
+          <% photo = p[rand] %>
+          <%= image_tag(photo.filepath, :class => "masonry-photo") %>
+        <% end %>
+      </div>
+      <div style="padding:8px">
+        <% blog.tags.each do |tag| %>
+          <%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+	var container = document.querySelector('#container');
+	var msnry
+	imagesLoaded( container, function() {
+		msnry = new Masonry( container, {
+		// options
+		columnWidth: 5,
+		itemSelector: '.masonry-item'
+		});
+	});
+</script>

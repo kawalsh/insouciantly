@@ -12,13 +12,14 @@
 	<%= image_tag(@blog.fizz_photo.filepath, :class => "fizz") %>
 <% end %>
 
-<%= @blog.body.html_safe %>
-<div>
-	<%= render :partial => "shared/lightbox", :locals => {:photos => @blog.photos, :size => "200" } %>
-</div>
+<%= render :partial => 'shared/blog', :locals => {:blog => @blog, :fizz => false} %>
 
 <% content_for :sidebar do %>
-  <div class = "date"><%= @blog.posted_at.strftime("%B %-d, %Y") %></div>
+	<% if @blog.page == "about" %>
+		<h2>This blog entry is about me!</h2>
+		Or possibly about something else that doesn't apply to any of the above categories.<br />
+		<span style="font-size:1.25em">Learn more <%= link_to "about insouciantly", about_index_url %>.</span>
+	<% end %>
 	<% if @blog.project %>
     <h2>This blog is about a project: </h2>
 		<%= link_to @blog.project.name + " Project", root_url %> <br />

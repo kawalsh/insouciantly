@@ -2,7 +2,6 @@
 <html>
 <head>
   <!-- Please call pinit.js only once per page -->
-  <script type="text/javascript" async defer  data-pin-color="white" data-pin-height="20" data-pin-hover="true" src="//assets.pinterest.com/js/pinit.js"></script>
   <div id="fb-root"></div>
   <script>
     (function(d, s, id) {
@@ -22,13 +21,19 @@
 
 <div class = "header">
 	<div class="icon">[d]<span style="font-family:signpainter;font-size:2em;">i</span></div>
+  <div class="home">
+    <%= link_to "home", root_url %>&nbsp&nbsp&nbsp&nbsp
+    <%= link_to "search", tags_path %>
+  </div>
 	<%= yield :title %>
 	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
-	<ul class = "header-menu"><%= link_to "about", about_index_url %></ul>
-	<ul class = "header-menu"><%= link_to "sewing", sew_index_url %></ul>
-	<ul class = "header-menu"><%= link_to "weaving", weave_index_url %></ul>
-	<ul class = "header-menu"><%= link_to "tutorials",learn_index_url %></ul>
-	<ul class = "header-menu"><%= link_to "books",read_index_url %></ul>
+  <ul style="margin:0px;">
+  	<li class = "header-menu"><%= link_to "about", about_index_url %></li>
+  	<li class = "header-menu"><%= link_to "sewing", sew_index_url %></li>
+  	<li class = "header-menu"><%= link_to "weaving", weave_index_url %></li>
+  	<li class = "header-menu"><%= link_to "tutorials",learn_index_url %></li>
+  	<li class = "header-menu"><%= link_to "books",read_index_url %></li>
+  </ul>
 </div>
 
 <div class = "fizz">

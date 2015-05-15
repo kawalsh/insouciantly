@@ -7,10 +7,30 @@
 	</span>
 	<%= image_tag("about.jpg", :class => "fizz") %>
 <% end %>
+
 <h1> About Me </h1>
+Hello! My name is kelly. I'm paid to be a web developer for a company called
+<a href="www.spoonflower.com">Spoonflower</a>. We make custom printed fabric for anyone that uploads
+and image to our site. It's pretty cool (but don't trust me, I'm biased).
+<br /><br />
+I've been interested in sewing since I was a child, but working for a company where I have access
+to a LARGE supply of fabric has definitely encouraged that hobby. When I sew, my interest is
+definitely in apparel, every day clothing and costumes. I also recently acquired a floor loom, and
+have taken my love of fabric to a new level. Though I'm new to it, I am madly in love with weaving,
+and plan to getting to a point where I feel comfortable sewing clothing out of cloth I have woven
+myself.
+<br /><br />
+I've loved books and reading for my entire life, and I especially love sharing what I read.
+Do you want to hear my opinion on any book?
+<a href="https://www.goodreads.com/user/show/5052060-insouciantly">Recommend it to me on goodreads!</a>
+So, since I'm a developer, I actually built this blog app for myself for the ground up. I'll try to
+write something eventually so you can recommend books without having a goodreads account.
+<br /><br />
+I have a lot of other good plans for this site eventually, but for now you can browse posts by any
+category above.
 
 <% content_for :sidebar do %>
-	<h2><%= link_to "More About Me", "www.google.com" %></h2>
+	<h2><%= link_to "More About Me", tag_path(40) %></h2>
 	<% @about_feed.each do |blog| %>
 		<div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
 		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>

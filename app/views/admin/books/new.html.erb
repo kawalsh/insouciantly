@@ -1,6 +1,6 @@
 <h1>New Book</h1>
 <%
-  pending_blogs = Blog.where(:status => 'pending')
+  pending_blogs = Blog.where(:status => 'pending').order("created_at desc").take(5)
   blog_list = Hash.new
   pending_blogs.each do |blog|
     blog_list[blog.title] = blog.id
@@ -12,25 +12,12 @@
     <%= f.select :blog_id, blog_list %>
   </p>
   <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :author %><br />
-    <%= f.text_field :first_name %>
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
     <%= f.label :stars %><br />
     <%= f.text_field :stars %>
   </p>
   <p>
-    <%= f.label :goodreads_link %><br />
-    <%= f.text_field :goodreads_link %>
-  </p>
-  <p>
-    <%= f.label :gr_html %><br />
-    <%= f.text_area :gr_html, :size => "10x10" %>
+    Goodreads ID<br />
+    <%= f.text_field :gr_id %>
   </p>
   <p>
     <%= f.submit "Save" %>

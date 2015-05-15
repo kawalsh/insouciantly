@@ -1,15 +1,8 @@
 
 <h2 style="display:inline-block">Pending Blog Updates</h2>
 <div style="float:right; display:inline-block">
-	<%= link_to "create new", new_admin_blog_path, :class => "btn" %>
+	<h2><%= link_to "create new", new_admin_blog_path %></h2>
 </div>
 <hr />
-<% @pending.each do |blog| %>
-	<div>
-		<%= link_to "edit", edit_admin_blog_path(blog), :class => "btn" %>
-		<%= link_to "view", admin_blog_path(blog), :class => "btn" %>
-		<%= link_to "post", edit_admin_blog_path(blog, :commit => "publish"), :class => "btn" %>
-	</div>
-	<%= render :partial => "shared/blog", :locals => {:blog => blog} %>
-	<hr />
-<% end %>
+<%= render :partial => "shared/blog_masonry",
+	:locals => {:masonryblogs => @pending, :style => "border:2px solid #dae4b7;", :admin => true} %>

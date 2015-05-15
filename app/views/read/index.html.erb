@@ -10,22 +10,14 @@
 	<%= image_tag(@featured_blog.fizz_photo.filepath, :class => "fizz") %>
 <% end %>
 
-<div class="date">
-	<%= @featured_blog.posted_at.strftime("%B %-d, %Y") %>
-</div>
-
-<div>
-	<%= @featured_blog.body.html_safe %>
-</div>
-
-<div class = "tag_container">
-	<% @featured_blog.tags.each do |tag| %>
-		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
-	<% end %>
-</div>
+<%= render :partial => 'shared/blog', :locals => {:blog => @featured_blog, :fizz => false} %>
 
 <% content_for :sidebar do %>
-	<h2><%= link_to "Reading Updates", "www.google.com" %></h2>
+	<h2><%= link_to "Reading Updates", tag_path(14) %></h2>
+	Want to know my opinion on a specific book?
+	<a href="https://www.goodreads.com/user/show/5052060-insouciantly">Recommend it to me on goodreads!</a>
+	I love to get good book recommendations, and will definitely read and review any book you suggest to me.
+	<hr />
 	<% @read_feed.each do |blog| %>
 		<div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
 		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>

@@ -1,4 +1,4 @@
-@import '<%= "colors/colors" + Random.new.rand(6).to_s %>';
+@import 'colors/colors1';
 @font-face {
 	font-family: raleway;
 	src: url(raleway-regular.ttf)
@@ -28,6 +28,7 @@ h1 {
 	font-weight:bold;
 	color:$contrast-color;
 	line-height:1em;
+	margin-top:5px;
 }
 h2 {
 	font-family:raleway;
@@ -43,10 +44,10 @@ h3 {
 	margin:20px 0px 30px 0px;
 }
 h4 {
-	font-family:raleway;
-	font-size:1.5em;
+	font-family:signpainter;
+	font-size:2em;
 	font-weight:bold;
-	color:$contrast-color;
+	color:$dark-color;
 	margin:3px;
 }
 
@@ -65,21 +66,23 @@ a:-webkit-any-link{
 }
 .masonry-item-lightbox {
 	width:280px;
-	border-radius: 9px;
 	overflow:hidden;
 	margin:3px;
 }
 .masonry-item {
-	width:250px;
+	width:280px;
 	background-color:white;
-	border-radius: 9px;
 	margin:5px;
 	overflow:hidden;
 }
 .masonry-photo{
 	width:100%
 }
-
+.home {
+	float:right;
+	font-size:1.5em;
+	padding-right:1em;
+}
 
 @media only screen and (min-width: 900px) {
 
