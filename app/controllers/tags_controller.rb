@@ -3,9 +3,9 @@ class TagsController < ApplicationController
 
   def index
     if params[:commit] == "search"
-      t = Tag.where(:tag => params[:tag_phrase]).first
-      if !t.nil?
-        redirect_to tag_path(t, :view => params[:view])
+      @tags = Tag.where(:tag => params[:tag_phrase])
+      unless @tags.nil? or @tags.length > 1
+        redirect_to tag_path(@tags[0], :view => params[:view])
       end
     end
   end

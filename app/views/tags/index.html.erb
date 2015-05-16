@@ -7,3 +7,25 @@
 (My search isn't really fully fledged yet, it will only find blogs which are tagged with the specific
 phrase you're looking for. It doesn't search the body of the blog text, YET! but I'm sure, someday, I'll
 bother to put that in.)
+<% if !@tags.nil? && !@tags.empty? %>
+  <h2>
+    It looks like I have two different tags with that word! Select the one you actually want below:
+  </h2>
+  <% @tags.each do |t| %>
+    <div style="font-size:1.5em;">
+      <% if t.tag_type == "genre" %>
+        Book Genre:
+      <% elsif t.tag_type == "" %>
+        Blogs, photos, projects:
+      <% else %>
+        <%= t.tag_type %>:
+      <% end %>
+      <%= render :partial => "shared/tag", :locals => {:tag => t} %>
+    </div>
+  <% end %>
+<% elsif @tags.empty? %>
+  <h2>
+    It doesn't look like I have anything tagged like that. I'm sorry! I'm still improving the search
+    functionality here.
+  </h2>
+<% end %>
