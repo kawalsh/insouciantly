@@ -10,14 +10,15 @@
   </div>
 <% end %>
 
-<div class="date">
-  <% if blog.status == "posted" %>
-    <%= blog.posted_at.strftime("%B %-d, %Y") %>
-  <% else %>
-    pending
-  <% end %>
-  <br />
-  <div class="fb-like" style="float:left;" data-href=<%= blog_url(blog)%> data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+<div style="display:block;width:100%;height:30px;">
+  <div class="fb-like" style="float:left;padding:5px 0 5px 0;" data-href=<%= blog_url(blog)%> data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+  <div class="date" style="padding:2px 0 2px 0;">
+    <% if blog.status == "posted" %>
+      <%= blog.posted_at.strftime("%B %-d, %Y") %>
+    <% else %>
+      pending
+    <% end %>
+  </div>
 </div>
 
 <%= blog.body.html_safe %>
