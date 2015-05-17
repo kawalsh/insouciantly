@@ -16,7 +16,7 @@ xml.rss :version => "2.0" do
         else
           xml.title ""
         end
-        xml.author "KellyWalsh"
+        xml.author "Kelly Walsh"
         xml.pubDate article.posted_at.to_s(:rfc822)
         xml.link "https://www.dressinsouciantly.com/blogs/" + article.id.to_s
         xml.guid article.id
