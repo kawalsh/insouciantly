@@ -1,25 +1,18 @@
 #encoding: UTF-8
-
 xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
   xml.channel do
     xml.title "DressInsouciantly"
-    xml.author "Kelly Walsh"
     xml.description "Sewing, Weaving, Reading, Random"
     xml.link "https://www.dressinsouciantly.com"
-    xml.language "en"
 
     for article in @blogs
       xml.item do
-        if article.title
-          xml.title article.title
-        else
-          xml.title ""
-        end
-        xml.author "Kelly Walsh"
+        xml.title article.title
+        xml.description article.body
         xml.pubDate article.posted_at.to_s(:rfc822)
-        xml.link "https://www.dressinsouciantly.com/blogs/" + article.id.to_s
-        xml.guid article.id
+        xml.link blog_url(article)
+        xml.guid blog_url(article)
 
         text = article.body
 		# if you like, do something with your content text here e.g. insert image tags.
