@@ -23,7 +23,7 @@ bother to put that in.)
       <%= render :partial => "shared/tag", :locals => {:tag => t} %>
     </div>
   <% end %>
-<% elsif @tags.empty? %>
+<% elsif !@tags.nil? && @tags.empty? %>
   <h2>
     It doesn't look like I have anything tagged like that. I'm sorry! I'm still improving the search
     functionality here.

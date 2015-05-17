@@ -11,7 +11,8 @@
 	<div class="icon">[d]<span style="font-family:signpainter;font-size:2em;">i</span></div>
   <div class="home">
     <%= link_to "home", root_url %>&nbsp&nbsp&nbsp&nbsp
-    <%= link_to "search", tags_path %>
+    <%= link_to "search", tags_path %>&nbsp&nbsp
+    <%= link_to(image_tag("rss.gif", :width => "30px"), "http://www.dressinsouciantly.com/feed?format=rss") %>
   </div>
 	<%= yield :title %>
 	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
