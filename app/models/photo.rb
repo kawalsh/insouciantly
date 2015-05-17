@@ -13,5 +13,24 @@ class Photo < ActiveRecord::Base
 		end
 	end
 
+	def associated_tags
+		tags = []
+		self.project.tags.each do |t|
+			if !tags.include?(t)
+				tags << t
+			end
+		end
+		self.blog.tags.each do |t|
+			if !tags.include?(t)
+				tags << t
+			end
+		end
+		self.tags.each do |t|
+			if tags.include?(t)
+				tags.delete(t)
+			end
+		end
+		return tags
+	end
 
 end

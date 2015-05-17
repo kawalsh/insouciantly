@@ -28,3 +28,7 @@
   <p>Tag Type: <%= text_field_tag :tag_type %></p>
   <%= submit_tag "add tag" %>
 <% end %>
+<h2>associated tags:</h2>
+<% @blog.associated_tags.each do |tag| %>
+  <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @blog} %>
+<% end %>

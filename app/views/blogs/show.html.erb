@@ -22,7 +22,7 @@
 	<% end %>
 	<% if @blog.project %>
     <h2>This blog is about a project: </h2>
-		<%= link_to @blog.project.name + " Project", root_url %> <br />
+		<%= link_to @blog.project.name + " Project", project_path(@blog.project) %> <br />
 		<%= @blog.project.short_description %>
 	<% end %>
   <% if !@blog.books.blank? %>

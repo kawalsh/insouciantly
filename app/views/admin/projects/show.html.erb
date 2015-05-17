@@ -4,10 +4,14 @@
     <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @project} %>
   <% end %>
   <br />
-  <%= form_tag(admin_project_url(@project), :method => :get) do %>
+  <%= form_tag(edit_admin_project_url(@project), :method => :get) do %>
     <p>Tag: <%= text_field_tag :tag %></p>
     <p>Tag Type: <%= text_field_tag :tag_type %></p>
     <%= submit_tag "add tag" %>
+  <% end %>
+  <h2>associated tags:</h2>
+  <% @project.associated_tags.each do |tag| %>
+    <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => @project} %>
   <% end %>
 <% end %>
 
