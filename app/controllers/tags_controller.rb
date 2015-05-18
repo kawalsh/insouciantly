@@ -22,8 +22,8 @@ class TagsController < ApplicationController
       end
     end
     @blogs = @tag.blogs.where(:status => "posted").order("posted_at DESC")
-    @photos = @tag.photos.order("created_at DESC")
-    @projects = @tag.projects.order("created_at DESC")
+    @photos = @tag.photos
+    @projects = @tag.projects
   end
 
 end
