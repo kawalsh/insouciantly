@@ -1,3 +1,9 @@
+<style>
+	.fizz { display:none; }
+  .content { display:inline-block; margin-top:125px; }
+  .sidebar { display:inline-block; margin-top:125px; }
+</style>
+
 <% content_for :title do %>
   <h3 class="logo"><span class="verb">[search]</span>Insouciantly </h3>
 <% end %>
@@ -14,7 +20,7 @@
 
   <% if params[:view] == "blogs" %>
     <%= render :partial => "shared/blog_masonry",
-      :locals => {:masonryblogs => @blogs, :style => "border:2px solid #dae4b7;", :admin => false} %>
+      :locals => {:masonryblogs => @blogs, :style => "border:2px solid lightgray;", :admin => false} %>
 
   <% elsif params[:view] == "books" %>
     <% @books.each do |book| %>

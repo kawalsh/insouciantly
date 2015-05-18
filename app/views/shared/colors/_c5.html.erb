@@ -1,0 +1,32 @@
+<%
+lightcolor = "#ffddd2"
+darkcolor = "#e95e61"
+contrastcolor = "#308cb2"
+%>
+
+body { background-color:<%= lightcolor %>; }
+body a { color: <%= darkcolor %>; }
+body a:hover { color: <%= contrastcolor %>; }
+
+h1 { color:<%= contrastcolor %>; }
+h2 { color:<%= contrastcolor %>; }
+h4 { color:<%= darkcolor %>; }
+
+.header {
+  background:<%= lightcolor %>;
+  border-bottom:5px solid <%= darkcolor %>;
+}
+.header-menu { font-color:<%= darkcolor %>; }
+.header-menu a { color: <%= darkcolor %>; }
+.header-menu a:hover { color: <%= contrastcolor %>; }
+.sidebar { border:2px solid <%= darkcolor %>; }
+.content { border: 2px solid <%= darkcolor %>; }
+.fizztext { background-color:<%= contrastcolor %>; }
+.verb { color:<%= contrastcolor %>; }
+.tag { border:1px solid <%= contrastcolor %>; }
+.tag a { color: <%= contrastcolor %>; }
+.tag a:hover { background-color: <%= contrastcolor %>; }
+.date { color:<%= contrastcolor %>; }
+.homesprite { background-position: -150px 0; }
+.searchsprite { background-position: -150px -30px; }
+.rsssprite { background-position: -150px -60px; }

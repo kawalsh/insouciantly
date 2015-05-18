@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  layout 'nofizz'
 
   def index
     if params[:commit] == "search"
@@ -22,9 +21,9 @@ class TagsController < ApplicationController
         @books = @tag.books
       end
     end
-    @blogs = @tag.blogs.where(:status => "posted")
-    @photos = @tag.photos
-    @projects = @tag.projects
+    @blogs = @tag.blogs.where(:status => "posted").order("posted_at DESC")
+    @photos = @tag.photos.order("created_at DESC")
+    @projects = @tag.projects.order("created_at DESC")
   end
 
 end

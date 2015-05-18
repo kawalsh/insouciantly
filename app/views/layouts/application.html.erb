@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html>
+<% @number = Random.new.rand(6) %>
 <head>
-  <!-- Please call pinit.js only once per page -->
-  <div id="fb-root"></div>
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
   <title>Insouciantly</title>
-
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
+  <%= auto_discovery_link_tag(:rss, "http://www.dressinsouciantly.com/feed?format=rss") %>
+  <style>
+    <%= render :partial => "shared/colors/c#{@number}" %>
+    <%= yield :styles %>
+  </style>
 </head>
 
 <div class = "header">
 	<div class="icon">
     [d]<span style="font-family:signpainter;font-size:2em;">i</span>
   </div>
-  <div class="home">
-    <div style="padding:5px; display:inline-block;"><%= link_to "home", root_url %></div>
-    <div style="padding:5px; display:inline-block;"><%= link_to "search", tags_path %></div>
-    <div style="padding:5px; display:inline-block;"><%= link_to(image_tag("rss.gif", :width => "30px"), "http://www.dressinsouciantly.com/feed?format=rss") %></div>
+  <div class = "nav">
+    <%= link_to(image_tag("homesprite#{@number}.png", :class => "navsprite"), root_url) %>
+    <%= link_to(image_tag("searchsprite#{@number}.png", :class => "navsprite"), tags_path) %>
+    <%= link_to(image_tag("rsssprite#{@number}.png", :class => "navsprite"), "http://www.dressinsouciantly.com/feed?format=rss") %>
   </div>
 	<%= yield :title %>
 	<%= link_to(image_tag("hamburger.png", :height => "30px", :class => "hamburger"), ) %>
@@ -51,6 +44,10 @@
 
 <div class = "content">
   <%= yield %>
+</div>
+
+<div class = "welcome">
+  <%= yield :welcome %>
 </div>
 
 </html>

@@ -1,4 +1,8 @@
-@import 'colors/colors1';
+$primary-color:#513f3d;
+$light-color:#dae4b7;
+$dark-color:#88a450;
+$contrast-color:#e03855;
+
 @font-face {
 	font-family: raleway;
 	src: url(raleway-regular.ttf)
@@ -81,6 +85,15 @@ a:-webkit-any-link{
 .rss {
 	width:144px;
 }
+.navsprite {
+	display:inline-block;
+	border-radius:3px;
+	overflow:hidden;
+	width:30px;
+}
+.welcome {
+	display:none;
+}
 
 @media only screen and (min-width: 900px) {
 
@@ -112,7 +125,7 @@ a:-webkit-any-link{
 		    color: $contrast-color;
 		}
 	}
-	.home {
+	.nav {
 		float:right;
 		font-size:1.5em;
 		padding-right:1em;
@@ -177,16 +190,16 @@ a:-webkit-any-link{
 @media only screen and (min-width: 0px) and (max-width: 899px) {
 	.header {
 		width:100%;
-	    position:fixed;
-	    top:0px;
-	    left:0px;
-	    height:35px;
-	    background-color:$light-color;
-	    width:100%;
-	    margin:0px;
-	    padding-bottom:5px;
-	    border-bottom:5px solid $dark-color;
-	    z-index:1000;
+    position:fixed;
+    top:0px;
+    left:0px;
+    height:35px;
+    background-color:$light-color;
+    width:100%;
+    margin:0px;
+    padding-bottom:5px;
+    border-bottom:5px solid $dark-color;
+    z-index:1000;
 	}
 	.header-menu {
 		display:none;
@@ -194,8 +207,8 @@ a:-webkit-any-link{
 		font-family:raleway;
 		font-weight:bold;
 	}
-	.home {
-		display:none;
+	.nav {
+		display:none !important;
 	}
 	.content {
 		background-color:white;
@@ -205,6 +218,7 @@ a:-webkit-any-link{
 		width:96%;
 		padding:2%;
 		padding-bottom:70px;
+		border:none !important;
 	}
 	.fizz {
 		width:100%;
@@ -227,7 +241,7 @@ a:-webkit-any-link{
 		color:white;
 	}
 	.sidebar {
-		display:none;
+		display:none !important;
 	}
 	.logo {
 		display:none;

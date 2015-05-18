@@ -1,6 +1,14 @@
+<style>
+	.fizz { display:inline-block; }
+	.sidebar { display:none; }
+	.content { display:none; }
+	.welcome { display:block; }
+</style>
+
 <% content_for :title do %>
 	<h3 class="logo"><span style="font-family:raleway; font-size:.5em; margin:10px">[dress]</span>Insouciantly </h3>
 <% end %>
+
 <% content_for :fizz do  %>
 	<%= image_tag("welcome.jpg", :class => "fizz") %>
 	<div class="fizztext" style="font-size:1em; margin-bottom:10px; margin-left:5px;">
@@ -13,5 +21,7 @@
 	</div>
 <% end %>
 
-<%= render :partial => "shared/blog_masonry",
-	:locals => {:masonryblogs => @blogs, :style => "", :admin => false} %>
+<% content_for :welcome do %>
+	<%= render :partial => "shared/blog_masonry",
+		:locals => {:masonryblogs => @blogs, :style => "", :admin => false} %>
+<% end %>
