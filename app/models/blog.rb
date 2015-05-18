@@ -33,22 +33,28 @@ class Blog < ActiveRecord::Base
 
 	def associated_tags
 		tags = []
-		self.photos.each do |p|
-			p.tags.each do |t|
+		if !self.photos.blank?
+			self.photos.each do |p|
+				p.tags.each do |t|
+					if !tags.include?(t)
+						tags << t
+					end
+				end
+			end
+		end
+		if !self.project.nil?
+			self.project.tags.each do |t|
 				if !tags.include?(t)
 					tags << t
 				end
 			end
 		end
-		self.project.tags.each do |t|
-			if !tags.include?(t)
-				tags << t
-			end
-		end
-		self.books.each do |b|
-			b.tags.each do |t|
-				if !tags.include?(t)
-					tags << t
+		if !self.books.blank?
+			self.books.each do |b|
+				b.tags.each do |t|
+					if !tags.include?(t)
+						tags << t
+					end
 				end
 			end
 		end
