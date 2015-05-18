@@ -38,7 +38,6 @@
       <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true} %>
 		<% end %>
 	<% end %>
-  <hr />
   <div>
     <% @blog.tags.each do |tag| %>
   		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
