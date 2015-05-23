@@ -29,7 +29,7 @@
   </div>
 <% end %>
 
-<div class = "tag_container">
+<div class = "tag-container">
 	<% blog.tags.each do |tag| %>
 		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
 	<% end %>
