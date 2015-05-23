@@ -25,7 +25,7 @@ xml.rss :version => "2.0" do
         image_url = image_tag(blog.fizz_photo.filepath, :class => "rss")
         image_caption = blog.fizz_photo.credits
         image_align = ""
-        image_tag = "<p><img src='#{image_url}' alt='#{image_caption}' title='#{image_caption}' align='#{image_align}' /></p>"
+        image_tag = "<p>#{image_url}</p>"
         text = image_tag + blog.body
         xml.description text
       end
