@@ -25,7 +25,7 @@
   <% end %>
   <hr />
   <h2>Blogs</h2>
-  <% @project.blogs.each do |blog| %>
+  <% @project.blogs.where(:status => "posted").each do |blog| %>
     <div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
     <%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
     <b><%= link_to blog.title, blog_url(blog) %></b><br />

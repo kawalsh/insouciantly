@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :blog
-	has_and_belongs_to_many :tags
+	has_and_belongs_to_many :tags, -> { order "tags.tag" }
 
 	def filepath
 		if self.project_id
@@ -15,14 +15,32 @@ class Photo < ActiveRecord::Base
 
 	def associated_tags
 		tags = []
-		self.project.tags.each do |t|
-			if !tags.include?(t)
-				tags << t
+		if self.project
+			self.project.tags.each do |t|
+				if !tags.include?(t)
+					tags << t
+				end
+			end
+			self.project.photos.each do |p|
+				p.tags.each do |t|
+					if !tags.include?(t)
+						tags << t
+					end
+				end
 			end
 		end
-		self.blog.tags.each do |t|
-			if !tags.include?(t)
-				tags << t
+		if self.blog
+			self.blog.tags.each do |t|
+				if !tags.include?(t)
+					tags << t
+				end
+			end
+			self.blog.photos.each do |p|
+				p.tags.each do |t|
+					if !tags.include?(t)
+						tags << t
+					end
+				end
 			end
 		end
 		self.tags.each do |t|

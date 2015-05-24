@@ -2,7 +2,7 @@
   <meta property="og:title" content="<%=blog.title%>" />
   <meta property="og:type" content="blog" />
   <meta property="og:url" content="<%=blog_url(blog)%>" />
-  <meta property="og:image" content="<%=image_url(blog.fizz_photo.filepath)%>" />
+  <% if blog.fizz_photo %> <meta property="og:image" content="<%=image_url(blog.fizz_photo.filepath)%>" /> <% end %>
   <meta property="fb:app_id" content='1393074814355918' />
   <meta property="og:site_name" content="Dress Insouciantly" />
   <meta property="og:description" content="<%= blog.body[0,130].html_safe %>...[keep reading]..." />
