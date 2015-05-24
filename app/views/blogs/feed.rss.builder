@@ -22,7 +22,7 @@ xml.rss :version => "2.0" do
         xml.link blog_url(blog)
         xml.guid blog_url(blog)
 
-        image_url = image_tag(blog.fizz_photo.filepath, :class => "rss")
+        image_url = image_tag(blog.fizz_photo.filepath, :width => "800px")
         image_caption = blog.fizz_photo.credits
         image_align = ""
         image_tag = "<p>#{image_url}</p>"
