@@ -3,8 +3,9 @@
   <meta property="og:type" content="blog" />
   <meta property="og:url" content="<%=blog_url(blog)%>" />
   <meta property="og:image" content="<%=image_url(blog.fizz_photo.filepath)%>" />
+  <meta property="fb:app_id" content='1393074814355918' />
   <meta property="og:site_name" content="Dress Insouciantly" />
-  <meta property="og:description" content="<%= blog.body[0,130].html_safe %> ... [keep reading] ..." />
+  <meta property="og:description" content="<%= blog.body[0,130].html_safe %>...[keep reading]..." />
 <% end %>
 <% if fizz %>
   <div class = 'fizz' style = "margin-top:0px">
