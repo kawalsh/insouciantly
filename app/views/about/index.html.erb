@@ -44,7 +44,7 @@ category above.
 		<div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
 		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
 		<b><%= link_to blog.title, blog_url(blog) %></b><br />
-		<%= blog.body[0,130].html_safe %>
+		<%= truncate(strip_tags(blog.body), length: 130)) %>
 		<hr />
 	<% end %>
 <% end %>

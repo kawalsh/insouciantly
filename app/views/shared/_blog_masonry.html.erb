@@ -20,7 +20,7 @@
         </div>
       <% end %>
       <div style="margin:5px">
-        <%= blog.body[0,500].html_safe %>
+        <%= truncate(strip_tags(blog.body), length: 500) %>
         <% if blog.body.length > 500 %>
           ...<%= link_to("[keep reading]", blog_path(blog)) %>
         <% end %>

@@ -30,7 +30,7 @@
 		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
 		<b><%= link_to blog.title, blog_url(blog) %></b><br />
 		<%= render :partial => "shared/book_stars", :locals => {:book => @featured_blog.book, :size => "1.5", :white => false} %>
-		<div><%= blog.body[0,130].html_safe %>. . .</div>
+		<div><%= truncate(strip_tags(blog.body), length: 130) %>. . .</div>
 		<hr />
 	<% end %>
 <% end %>

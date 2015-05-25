@@ -63,7 +63,7 @@
         <div style="width:77%; display:inline-block;">
           <h2><%= link_to blog.title, blog_path(blog) %></h2>
           <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
-          <%= blog.body[0,150].html_safe %>
+          <%= truncate(strip_tags(blog.body), length: 130) %>
         </div>
       </div>
     <% end %>
