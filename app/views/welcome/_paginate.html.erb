@@ -1,0 +1,5 @@
+<% unless page-1 == @blogs.total_pages %>
+  <% logger.info "index.html, page is #{page}" %>
+  <%= link_to "more...", welcome_index_url(:page => page),
+     :remote => true, :class => "button" %>
+<% end %>

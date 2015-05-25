@@ -1,0 +1,13 @@
+$('#container').masonry().append("<%= escape_javascript(render(@blogs)) %>");
+var container = document.querySelector('#container');
+var msnry
+imagesLoaded( container, function() {
+  msnry = new Masonry( container, {
+  // options
+  columnWidth: 5,
+  itemSelector: '.masonry-item'
+  });
+});
+<% logger.info "in index.js, about to render partial with page #{params[:page]} + 1" %>
+$("#paginate").html("<%= escape_javascript(render :partial => "paginate",
+  :locals => {:page => (params[:page].to_i + 1)}) %>");

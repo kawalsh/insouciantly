@@ -22,6 +22,22 @@
 <% end %>
 
 <% content_for :welcome do %>
-	<%= render :partial => "shared/blog_masonry",
-		:locals => {:masonryblogs => @blogs, :style => "", :admin => false} %>
+	<div id="container">
+		<%= render @blogs %>
+	</div>
+	<script>
+		var container = document.querySelector('#container');
+		var msnry
+		imagesLoaded( container, function() {
+			msnry = new Masonry( container, {
+			// options
+			columnWidth: 5,
+			itemSelector: '.masonry-item'
+			});
+		});
+	</script>
+	<div id = "paginate" class = "center" style="width:100px;margin-top:30px;margin-bottom:30px;" %>
+		<% logger.info "rendering paginate partial with link to page #{params[:page]} + 1" %>
+		<%= render :partial => "paginate", :locals => {:page => params[:page].to_i + 1} %>
+	</div>
 <% end %>
