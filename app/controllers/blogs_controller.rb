@@ -1,5 +1,11 @@
 class BlogsController < ApplicationController
 
+  def iframe
+    @blog = Blog.find(params[:id])
+    response.headers["X-FRAME-OPTIONS"] = "ALLOW-FROM http://bloglovin.com"
+    render :partial => "iframe_blog", :locals => {:blog => @blog}, :layout => "iframe"
+  end
+
   def index
 
   end

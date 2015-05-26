@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   match "admin" => "admin/blogs#index", via: [:get,:post]
   get 'feed' => 'blogs#feed'
-  
+  get '/blogs/:id/iframe' => 'blogs#iframe'
+
   resources :about
   resources :sew
   resources :weave

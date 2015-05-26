@@ -1,0 +1,36 @@
+<div class = 'fizz' style = "margin-top:0px">
+  <span class = "fizztext">
+		<%= blog.title %>
+    <% if blog.book %>
+      <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => true} %>
+    <% end %>
+	</span>
+  <%= image_tag(blog.fizz_photo.filepath, :class => "fizz") if blog.fizz_photo %>
+</div>
+
+<div class = "content">
+  <div style="display:block;width:100%;height:30px;">
+    <div class="fb-like" style="float:left;padding:5px 0 5px 0;" data-href="<%=blog_url(blog)%>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+    <div class="date" style="padding:2px 0 2px 0;">
+      <% if blog.status == "posted" %>
+        <%= blog.posted_at.strftime("%B %-d, %Y") %>
+      <% else %>
+        pending
+      <% end %>
+    </div>
+  </div>
+
+  <%= blog.body.html_safe %>
+
+  <% if blog.not_fizz_photos %>
+    <div>
+      <%= render :partial => "shared/lightbox", :locals => {:photos => blog.not_fizz_photos, :size => "200" } %>
+    </div>
+  <% end %>
+
+  <div class = "tag-container">
+  	<% blog.tags.each do |tag| %>
+  		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+  	<% end %>
+  </div>
+</div>

@@ -19,8 +19,8 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title blog.title
         xml.pubDate blog.posted_at.to_s(:rfc822)
-        xml.link blog_url(blog)
-        xml.guid blog_url(blog)
+        xml.link blog_url(blog)+"/iframe"
+        xml.guid blog_url(blog)+"/iframe"
 
         image_url = image_tag(blog.fizz_photo.filepath, :width => "800px")
         image_caption = blog.fizz_photo.credits
