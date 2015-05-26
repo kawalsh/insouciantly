@@ -22,5 +22,8 @@ module Insouciantly
 
     config.assets.initialize_on_precompile = false
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOW-FROM http://bloglovin.com'
+    }
   end
 end
