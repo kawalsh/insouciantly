@@ -7,12 +7,12 @@ xml.rss :version => "2.0" do
     xml.link "https://www.dressinsouciantly.com"
 
     xml.image do
-      xml.url image_tag("welcome.jpg")
+      xml.url image_url("welcome.jpg")
       xml.title "DressInsouciantly"
       xml.description "Sewing, Weaving, Reading, Random"
       xml.link "https://www.dressinsouciantly.com"
       xml.width 144
-      xml.heigh 57
+      xml.height 57
     end
 
     for blog in @blogs
@@ -22,10 +22,10 @@ xml.rss :version => "2.0" do
         xml.link blog_url(blog)+"/iframe"
         xml.guid blog_url(blog)+"/iframe"
 
-        image_url = image_tag(blog.fizz_photo.filepath, :width => "800px")
+        image_url = image_url(blog.fizz_photo.filepath)
         image_caption = blog.fizz_photo.credits
         image_align = ""
-        image_tag = "<p>#{image_url}</p>"
+        image_tag = "<img src='#{image_url}' alt='' width='100%'><br />"
         text = image_tag + blog.body
         xml.description text
       end

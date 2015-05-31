@@ -29,6 +29,7 @@ class Blog < ActiveRecord::Base
 				return tag.tag
 			end
 		end
+		return "dress"
 	end
 
 	def associated_tags
