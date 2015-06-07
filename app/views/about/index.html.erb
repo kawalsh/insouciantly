@@ -37,6 +37,10 @@ write something eventually so you can recommend books without having a goodreads
 <br /><br />
 I have a lot of other good plans for this site eventually, but for now you can browse posts by any
 category above.
+<h5>Photos of Me:</h5>
+<div>
+	<%= render :partial => "shared/lightbox", :locals => {:photos => @photos, :size => "200" } %>
+</div>
 
 <% content_for :sidebar do %>
 	<h2><%= link_to "More About Me", tag_path(40) %></h2>
