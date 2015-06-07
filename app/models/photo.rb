@@ -5,11 +5,11 @@ class Photo < ActiveRecord::Base
 
 	def filepath
 		if self.project_id
-			return "project_photos/#{self.project_id}/#{self.filename}"
+			return "https://s3-us-west-2.amazonaws.com/insouciantly/project_photos/#{self.project_id}/#{self.filename}"
 		elsif self.blog_id
-			return "blog_photos/#{self.blog_id}/#{self.filename}"
+			return "https://s3-us-west-2.amazonaws.com/insouciantly/blog_photos/#{self.blog_id}/#{self.filename}"
 		else
-			return "photos/#{self.filename}"
+			return "https://s3-us-west-2.amazonaws.com/insouciantly/photos/#{self.filename}"
 		end
 	end
 
