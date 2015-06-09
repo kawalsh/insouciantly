@@ -43,7 +43,9 @@
     <%= link_to(image_tag("rsssprite#{@number}.png", :class => "navsprite"), "http://www.dressinsouciantly.com/feed?format=rss") %>
     <%= link_to(image_tag("hamburger#{@number}.png", :class => "hamburger"), ) %>
   </div>
-	<%= yield :title %>
+  <a href="<%= root_url %>">
+    <%= yield :title %>
+  </a>
 
   <ul style="margin:0px;">
   	<li class = "header-menu"><%= link_to "about", about_index_url %></li>
