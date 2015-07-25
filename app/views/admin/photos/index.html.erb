@@ -5,6 +5,9 @@
 <table>
   <% @photos.each do |photo| %>
     <tr>
+      <td>
+        <%= link_to "edit", edit_admin_photo_path(photo) %>
+      </td>
       <td style = "width:15%">
         <%= image_tag(photo.filepath, :width => "100%") %>
       </td>
@@ -16,16 +19,13 @@
         <% end %>
       </td>
       <td>
-        <b><%= photo.project.name if photo.project %></b>
+        <b><%= photo.project.name if photo.project %></b><br />
+        <%= photo.blog.title if photo.blog %>
       </td>
       <td>
-        <b><%= photo.blog.title if photo.blog %></b>
-      </td>
-      <td>
-        <%= photo.credits %>
-      </td>
-      <td>
-        <%= link_to "edit", edit_admin_photo_path(photo) %>
+        <% photo.tags.each do |tag| %>
+          <%= render :partial => "shared/admin_tag", :locals => {:tag => tag, :attached => photo} %>
+        <% end %>
       </td>
     </tr>
   <% end %>
