@@ -1,7 +1,7 @@
 <div id="container">
   <% masonryblogs.each do |blog| %>
     <div class="masonry-item" style="<%= style %>">
-      <%= image_tag(blog.fizz_photo.filepath, :class => "masonry-photo") %>
+      <% if blog.fizz_photo %> <%= image_tag(blog.fizz_photo.filepath, :class => "masonry-photo") %> <% end %>
       <% if admin %>
         <%= link_to "edit", edit_admin_blog_path(blog) %> >>
         <%= link_to "post", edit_admin_blog_path(blog, :commit => "publish") %>
