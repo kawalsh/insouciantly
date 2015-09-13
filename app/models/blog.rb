@@ -32,6 +32,16 @@ class Blog < ActiveRecord::Base
 		return "dress"
 	end
 
+	def patterns
+		patterns = []
+		self.tags.each do |tag|
+			if tag.tag_type == "pattern"
+				patterns << Pattern.where(name: tag.tag).take
+			end
+		end
+		return patterns
+	end
+
 	def associated_tags
 		tags = []
 		if !self.photos.blank?

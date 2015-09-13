@@ -38,7 +38,20 @@
       <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true} %>
 		<% end %>
 	<% end %>
-  <div>
+	<% if !@blog.patterns.blank? %>
+		<h2>This blog mentions a
+			<%= link_to "sewing pattern", patterns_url %>
+			:
+		</h2>
+		<% @blog.patterns.each do |pattern| %>
+			<div style="margin:5px">
+				<center><%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %></center>
+				<%= link_to(image_tag(pattern.line_art, :width => "100%"), pattern_path(pattern)) %>
+				<center><%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %></center>
+			</div>
+		<% end %>
+	<% end %>
+  <div style="margin:10px;">
     <% @blog.tags.each do |tag| %>
   		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
   	<% end %>
