@@ -21,36 +21,37 @@
 	<% end %>
 <% end %>
 
-<h1><%= @pattern.company %> <%= @pattern.name %></h1>
+<h1 style="margin-bottom:0px;"><%= @pattern.company %> <%= @pattern.name %></h1>
+<div style="font-family:signpainter;font-size:2em;margin:10px;"><%= link_to "see all pattern reviews", patterns_url %></div>
 <div style="position:relative;">
-	<div style="width:50%; display:inline-block;">
+	<div style="width:40%; display:inline-block;">
 		<%= image_tag(@pattern.line_art, :width => "100%") %>
 	</div>
-	<div style="width:50%; display:inline-block; top:0px; position:absolute;">
+	<div style="width:60%; display:inline-block; top:0px; position:absolute;">
 		<div style="padding:10px;">
 			<%= render partial: "shared/book_stars", locals: {stars: @pattern.stars, size:"3"} %>
 		</div>
 		<%= link_to "Manufacturers Link", @pattern.man_link.to_s, :target => "_blank" %> <br />
 		<div style="width:80%; padding-top:10px">
-			<i><%= @pattern.review %></i>
+			<i><%= @pattern.review.html_safe %></i>
 		</div>
 	</div>
-	<div>
-    <% @pattern.blogs.each do |blog| %>
-      <div style="border-bottom:2px solid #deebe8; padding:5px 0 5px 0;">
-        <div style="width:20%; margin-right:2%; display:inline-block;">
-          <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
-        </div>
-        <div style="width:77%; display:inline-block;">
-          <h2><%= link_to blog.title, blog_path(blog) %></h2>
-          <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
-          <%= truncate(strip_tags(blog.body), length: 130) %>
-        </div>
-      </div>
-    <% end %>
-	</div>
-	<div>
-		<%= render :partial => "shared/lightbox", :locals => {:photos => @pattern.photos, :size => "100" } %>
-	</div>
+</div>
 
+<div style="margin-top:20px;">
+  <% @pattern.blogs.each do |blog| %>
+    <div style="border-bottom:2px solid #deebe8; padding:5px 0 5px 0;">
+      <div style="width:20%; margin-right:2%; display:inline-block;">
+        <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
+      </div>
+      <div style="width:77%; display:inline-block;">
+        <h2><%= link_to blog.title, blog_path(blog) %></h2>
+        <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
+        <%= truncate(strip_tags(blog.body), length: 130) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div>
+	<%= render :partial => "shared/lightbox", :locals => {:photos => @pattern.photos, :size => "100" } %>
 </div>

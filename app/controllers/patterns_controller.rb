@@ -5,4 +5,8 @@ class PatternsController < ApplicationController
     @all_patterns = Pattern.all.order("company ASC")
   end
 
+  def index
+    @patterns = Pattern.all.order("company ASC")
+  end
+
 end

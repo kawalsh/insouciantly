@@ -1,0 +1,34 @@
+<style>
+	.fizz { display:none; }
+  .content { display:inline-block; margin-top:125px; }
+  .sidebar { display:inline-block; margin-top:125px; }
+</style>
+
+<% content_for :title do %>
+  <h3 class="logo"><span class="verb">[design]</span>Insouciantly </h3>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div style="padding:8px">
+    I try to keep a record of all the sewing patterns I use for various projects. Here you will find my quick random thoughts on them,
+    a link to any posted blog where I mention the pattern with photos of the actual dress, and
+    a star rating up to 5 (1 means this was so bad I didn't finish it or couldn't wear it, 5 means I love it so much I've used it multiple times and would recommend it to anyone).
+    <br /> -- Kelly
+  </div>
+<% end %>
+
+<h1>All Sewing Patterns</h1>
+
+<% c = @patterns.first.company %>
+<h4><%= c %></h4>
+<% @patterns.each do |pattern| %>
+  <% if pattern.company != c %>
+    <% c = pat.company %>
+    <h4> <%= c %></h4>
+  <% end %>
+  <div style="width:200px;display:inline-block">
+    <center><%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %></center>
+    <%= link_to(image_tag(pattern.line_art, :width => "100%"), pattern_path(pattern)) %>
+    <center><%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %></center>
+  </div>
+<% end %>
