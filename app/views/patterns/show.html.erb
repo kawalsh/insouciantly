@@ -32,10 +32,10 @@
 
 <div style="width:100%;position:relative;">
 	<div style="width:40%; display:inline-block;">
-		<%= image_tag(@pattern.line_art, :width => "100%") %>
+		<%= image_tag(@pattern.line_art, :width => "100%") %><br />
+		<%= link_to "Manufacturers Link", @pattern.man_link.to_s, :target => "_blank" %>
 	</div>
 	<div style="width:60%; display:inline-block; top:0px; position:absolute;">
-		<%= link_to "Manufacturers Link", @pattern.man_link.to_s, :target => "_blank" %> <br />
 		<div style="width:95%; padding-top:10px">
 			<i><%= @pattern.review.html_safe %></i>
 		</div>
