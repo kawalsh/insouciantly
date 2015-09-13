@@ -12,7 +12,7 @@
 <% content_for :fizz do  %>
 	<span class = "fizztext">
 		<%= @featured_blog.title %>
-		<%= render :partial => "shared/book_stars", :locals => {:book => @featured_blog.book, :size => ".75", :white => true} %>
+		<%= render :partial => "shared/book_stars", :locals => {:stars => @featured_blog.book.stars, :size => ".75", :white => true} %>
 	</span>
 	<%= image_tag(@featured_blog.fizz_photo.filepath, :class => "fizz") %>
 <% end %>
@@ -50,7 +50,7 @@
 		<div class="date"><%= blog.posted_at.strftime("%m/%d/%y")%></div>
 		<%= image_tag(blog.fizz_photo.filepath, :width => "100%") %>
 		<b><%= link_to blog.title, blog_url(blog) %></b><br />
-		<%= render :partial => "shared/book_stars", :locals => {:book => @featured_blog.book, :size => "1.5", :white => false} %>
+		<%= render :partial => "shared/book_stars", :locals => {:stars => @featured_blog.book.stars, :size => "1.5", :white => false} %>
 		<div><%= truncate(strip_tags(blog.body), length: 130) %>. . .</div>
 		<hr />
 	<% end %>

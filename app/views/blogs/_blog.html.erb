@@ -10,7 +10,7 @@
   <h2><%= link_to(blog.title, blog_path(blog)) %></h2>
   <% if blog.book %>
     <div style="padding-left:5px">
-      <%= render :partial => "shared/book_stars", :locals => {:book => blog.book, :size => "1", :white => false} %>
+      <%= render :partial => "shared/book_stars", :locals => {:stars => blog.book.stars, :size => "1", :white => false} %>
     </div>
   <% end %>
   <div style="margin:5px">

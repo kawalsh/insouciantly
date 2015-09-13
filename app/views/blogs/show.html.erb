@@ -13,7 +13,7 @@
 	<span class = "fizztext">
 		<%= @blog.title %>
 		<% if @blog.book %>
-			<%= render :partial => "shared/book_stars", :locals => {:book => @blog.book, :size => "0.75", :white => true} %>
+			<%= render :partial => "shared/book_stars", :locals => {:stars => @blog.book.stars, :size => "0.75", :white => true} %>
 		<% end %>
 	</span>
 	<%= image_tag(@blog.fizz_photo.filepath, :class => "fizz") %>

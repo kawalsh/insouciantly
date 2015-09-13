@@ -1,5 +1,6 @@
+<% white = false if white.nil? %>
 <% for i in 1..5 %>
-  <% if i <= book.stars %>
+  <% if i <= stars %>
     <% if white %>
       <%= image_tag("star-white.png", :style => "width:#{size}em;") %>
     <% else %>

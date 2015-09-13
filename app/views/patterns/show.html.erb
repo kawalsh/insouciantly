@@ -1,0 +1,56 @@
+<style>
+	.fizz { display:none; }
+  .content { display:inline-block; margin-top:125px; }
+  .sidebar { display:inline-block; margin-top:125px; }
+</style>
+<% content_for :title do %>
+  <h3 class="logo"><span class="verb">[design]</span>Insouciantly </h3>
+<% end %>
+<% content_for :sidebar do %>
+  <h5>All Patterns:</h5>
+	<% c = @all_patterns.first.company %>
+	<h4 style="font-family:raleway"> <%= c %></h4>
+	<% @all_patterns.each do |pat| %>
+		<% if pat.company != c %>
+			<% c = pat.company %>
+			<h4 style="font-family:raleway"> <%= c %></h4>
+		<% end %>
+		<div class="tag">
+			<%= link_to pat.name, pattern_path(pat) %>
+		</div>
+	<% end %>
+<% end %>
+
+<h1><%= @pattern.company %> <%= @pattern.name %></h1>
+<div style="position:relative;">
+	<div style="width:50%; display:inline-block;">
+		<%= image_tag(@pattern.line_art, :width => "100%") %>
+	</div>
+	<div style="width:50%; display:inline-block; top:0px; position:absolute;">
+		<div style="padding:10px;">
+			<%= render partial: "shared/book_stars", locals: {stars: @pattern.stars, size:"3"} %>
+		</div>
+		<%= link_to "Manufacturers Link", @pattern.man_link.to_s, :target => "_blank" %> <br />
+		<div style="width:80%; padding-top:10px">
+			<i><%= @pattern.review %></i>
+		</div>
+	</div>
+	<div>
+    <% @pattern.blogs.each do |blog| %>
+      <div style="border-bottom:2px solid #deebe8; padding:5px 0 5px 0;">
+        <div style="width:20%; margin-right:2%; display:inline-block;">
+          <%= image_tag(blog.fizz_photo.filepath, :style => "width:100%;") %>
+        </div>
+        <div style="width:77%; display:inline-block;">
+          <h2><%= link_to blog.title, blog_path(blog) %></h2>
+          <div class="date"><%= blog.posted_at.strftime("%B %-d, %Y") %></div>
+          <%= truncate(strip_tags(blog.body), length: 130) %>
+        </div>
+      </div>
+    <% end %>
+	</div>
+	<div>
+		<%= render :partial => "shared/lightbox", :locals => {:photos => @pattern.photos, :size => "100" } %>
+	</div>
+
+</div>

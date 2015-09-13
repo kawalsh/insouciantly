@@ -1,0 +1,26 @@
+<h1> Edit <%= @pattern.name %> </h1>
+<%= form_for(@pattern, :url => url_for(:action=>"update", :controller=>"admin/patterns", :id =>@pattern.id)) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :company %>
+    <%= f.text_field :company %>
+  </p>
+  <p>
+    <%= f.label :stars %><br />
+    <%= f.text_field :stars %>
+  </p>
+  <p>
+    <%= f.label :man_link %><br />
+    <%= f.text_field :man_link %>
+  </p>
+  <p>
+    <%= f.label :review %><br/>
+    <%= f.text_area :review, :size => "100x20" %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

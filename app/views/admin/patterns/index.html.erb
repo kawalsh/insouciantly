@@ -1,0 +1,17 @@
+<h1>Patterns</h1>
+<%= link_to "new pattern", new_admin_pattern_path %>
+<table>
+
+  <% @patterns.each do |pat| %>
+    <tr>
+      <td><%= image_tag(pat.line_art, :width => "100px") %></td>
+      <td><%= link_to pat.name, pattern_path(pat) %></td>
+      <td><%= pat.company %></td>
+      <td width="15%">
+        <%= render partial: "shared/book_stars", locals: {stars: pat.stars, size:"1.5"} %>
+      </td>
+      <td> <%= truncate(strip_tags(pat.review), length: 200) %> </td>
+      <td> <%= link_to "edit", edit_admin_pattern_path(pat) %>
+    </tr>
+  <% end %>
+</table>
