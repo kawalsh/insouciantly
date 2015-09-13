@@ -22,38 +22,45 @@
 <%= render :partial => 'shared/blog', :locals => {:blog => @blog, :fizz => false} %>
 
 <% content_for :sidebar do %>
+
 	<% if @blog.page == "about" %>
 		<h2>This blog entry is about me!</h2>
 		Or possibly about something else that doesn't apply to any of the above categories.<br />
 		<span style="font-size:1.25em">Learn more <%= link_to "about insouciantly", about_index_url %>.</span>
+		<br /><br />
 	<% end %>
+
 	<% if @blog.project %>
     <h2>This blog is about a project: </h2>
 		<%= link_to @blog.project.name + " Project", project_path(@blog.project) %> <br />
 		<%= @blog.project.short_description %>
+		<br /><br />
 	<% end %>
+
   <% if !@blog.books.blank? %>
     <h2>This blog is about a book: </h2>
     <% @blog.books.each do |book| %>
       <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true} %>
 		<% end %>
+		<br /><br />
 	<% end %>
+
 	<% if !@blog.patterns.blank? %>
-		<h2>This blog mentions a
-			<%= link_to "sewing pattern", patterns_url %>
-			:
-		</h2>
-		<% @blog.patterns.each do |pattern| %>
-			<div style="margin:5px">
-				<center><%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %></center>
-				<%= link_to(image_tag(pattern.line_art, :width => "100%"), pattern_path(pattern)) %>
-				<center><%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %></center>
-			</div>
-		<% end %>
+		<div syle="margin-bottom:20px;">
+			<h2>This blog mentions a
+				<%= link_to "sewing pattern", patterns_url %>:
+			</h2>
+			<% @blog.patterns.each do |pattern| %>
+				<%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %><br />
+				<%= link_to(image_tag(pattern.line_art, :width => "100%"), pattern_path(pattern)) %><br />
+				<%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %>
+				<br /><br />
+			<% end %>
+		</div>
 	<% end %>
-  <div style="margin:10px;">
-    <% @blog.tags.each do |tag| %>
-  		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
-  	<% end %>
-  </div>
+
+  <% @blog.tags.each do |tag| %>
+		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
+	<% end %>
+
 <% end %>
