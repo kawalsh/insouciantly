@@ -38,7 +38,7 @@
 			</div>
 		<% end %>
 	<% end %>
-	<% !@featured_blog.patterns.blank? %>
+	<% if !@featured_blog.patterns.blank? %>
 		<h5>This blog mentions a sewing pattern: </h5>
 		<% @featured_blog.patterns.each do |pattern| %>
 			<div style="margin:10px; display:inline-block">
