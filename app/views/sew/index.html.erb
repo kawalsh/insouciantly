@@ -20,16 +20,19 @@
 	<%= render :partial => 'shared/blog', :locals => {:blog => @featured_blog, :fizz => false} %>
 
 	<div style="clear:both"></div>
+
 	<% if @featured_blog.page == "about" %>
 		<h5>This blog entry is about me!</h5>
 		Or possibly about something else that doesn't apply to any of the above categories.<br />
 		<span style="font-size:1.25em">Learn more <%= link_to "about insouciantly", about_index_url %>.</span>
 	<% end %>
+
 	<% if @featured_blog.project %>
     <h5>This blog is about a project: </h5>
 		<%= link_to @featured_blog.project.name + " Project", project_path(@featured_blog.project) %> <br />
 		<%= @featured_blog.project.short_description %>
 	<% end %>
+
   <% if !@featured_blog.books.blank? %>
     <h5>This blog is about a book: </h5>
     <% @featured_blog.books.each do |book| %>
@@ -38,7 +41,8 @@
 			</div>
 		<% end %>
 	<% end %>
-	<% !@feature_blog.patterns.blank? %>
+
+	<% !@featured_blog.patterns.blank? %>
 		<h5>This blog mentions a sewing pattern: </h5>
 		<% @featured_blog.patterns.each do |pattern| %>
 			<div style="margin:10px; display:inline-block">
@@ -48,6 +52,7 @@
 			</div>
 		<% end %>
 	<% end %>
+
 <% end %>
 
 <% content_for :sidebar do %>
