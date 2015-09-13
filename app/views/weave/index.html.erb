@@ -50,7 +50,7 @@
 		<% @featured_blog.patterns.each do |pattern| %>
 			<div style="margin:10px; display:inline-block">
 				<%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %><br />
-				<%= link_to(image_tag(pattern.line_art, :width => "100%"), pattern_path(pattern)) %><br />
+				<%= link_to(image_tag(pattern.line_art, :width => "150px"), pattern_path(pattern)) %><br />
 				<%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %>
 			</div>
 		<% end %>
