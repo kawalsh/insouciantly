@@ -8,6 +8,8 @@
 <% end %>
 <% content_for :sidebar do %>
   <h5>All Patterns:</h5>
+	<%= link_to "see all pattern reviews", patterns_url %>
+	<Br />
 	<% c = @all_patterns.first.company %>
 	<h4 style="font-family:raleway"> <%= c %></h4>
 	<% @all_patterns.each do |pat| %>
@@ -21,18 +23,20 @@
 	<% end %>
 <% end %>
 
-<h1 style="margin-bottom:0px;"><%= @pattern.company %> <%= @pattern.name %></h1>
-<div style="font-family:signpainter;font-size:2em;margin:10px;"><%= link_to "see all pattern reviews", patterns_url %></div>
-<div style="position:relative;">
+<h1>
+	<%= @pattern.company %> <%= @pattern.name %>
+	<span style="float:right">
+		<%= render partial: "shared/book_stars", locals: {stars: @pattern.stars, size:"1"} %>
+	</span>
+</h1>
+
+<div style="width:100%;position:relative;">
 	<div style="width:40%; display:inline-block;">
 		<%= image_tag(@pattern.line_art, :width => "100%") %>
 	</div>
 	<div style="width:60%; display:inline-block; top:0px; position:absolute;">
-		<div style="padding:10px;">
-			<%= render partial: "shared/book_stars", locals: {stars: @pattern.stars, size:"3"} %>
-		</div>
 		<%= link_to "Manufacturers Link", @pattern.man_link.to_s, :target => "_blank" %> <br />
-		<div style="width:80%; padding-top:10px">
+		<div style="width:95%; padding-top:10px">
 			<i><%= @pattern.review.html_safe %></i>
 		</div>
 	</div>
