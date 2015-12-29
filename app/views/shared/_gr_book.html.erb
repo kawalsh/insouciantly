@@ -1,6 +1,6 @@
 <% unless book.gr_id.nil? %>
   <% book_info = book.gr_api %>
-  <% if info %>
+  <% if book_info %>
     <div class="book_image">
       <%= link_to image_tag("#{book_info[:img_url]}", :width => "95%"), blog_url(book.blog) %>
     </div>
@@ -11,8 +11,8 @@
     </div>
   <% else %>
     <div width="100%; padding-right:5px">
-      <%= link_to image_tag("#{book_info[:img_url]}"), blog_url(book.blog) %><br />
-      <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => "1", :white => false} %>
+      <%= link_to "Goodreads API down", blog_url(book.blog) %><br />
+      <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => ".8", :white => false} %>
     </div>
   <% end %>
 <% end %>
