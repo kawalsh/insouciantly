@@ -4,6 +4,61 @@
 <% @number = 1 %>
 <head>
   <div id="fb-root"></div>
+
+  <title>Insouciantly</title>
+  <%# stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%# javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= auto_discovery_link_tag(:rss, "http://www.dressinsouciantly.com/feed?format=rss") %>
+  <style>
+    <% render :partial => "shared/colors/c#{@number}" %>
+    <%= yield :styles %>
+  </style>
+  <%= yield :head %>
+</head>
+
+<body>
+  <div class = "header">
+  	<div class="icon">
+      [d]<span style="font-family:signpainter;font-size:2em;">i</span>
+    </div>
+    <div class = "nav">
+      <%= link_to(image_tag("homesprite#{@number}.png", :class => "navsprite"), root_url) %>
+      <%= link_to(image_tag("searchsprite#{@number}.png", :class => "navsprite"), tags_path) %>
+      <%= link_to(image_tag("rsssprite#{@number}.png", :class => "navsprite"), "http://www.dressinsouciantly.com/feed?format=rss") %>
+      <%= link_to(image_tag("hamburger#{@number}.png", :class => "hamburger"), ) %>
+    </div>
+    <a href="<%= root_url %>">
+      <%= yield :title %>
+    </a>
+
+    <ul style="margin:0px;">
+    	<li class = "header-menu"><%= link_to "about", about_index_url %></li>
+    	<li class = "header-menu"><%= link_to "sewing", sew_index_url %></li>
+    	<li class = "header-menu"><%= link_to "weaving", weave_index_url %></li>
+    	<li class = "header-menu"><%= link_to "tutorials",learn_index_url %></li>
+    	<li class = "header-menu"><%= link_to "books",read_index_url %></li>
+    </ul>
+  </div>
+
+  <div class = "fizz">
+    <%= yield :fizz %>
+  </div>
+
+  <div class = "sidebar">
+    <%= yield :sidebar %>
+  </div>
+
+  <div class = "content">
+    <%= yield %>
+  </div>
+
+  <div class = "welcome">
+    <%= yield :welcome %>
+  </div>
+
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -21,55 +76,5 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
   </script>
-  <title>Insouciantly</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= auto_discovery_link_tag(:rss, "http://www.dressinsouciantly.com/feed?format=rss") %>
-  <style>
-    <% render :partial => "shared/colors/c#{@number}" %>
-    <%= yield :styles %>
-  </style>
-  <%= yield :head %>
-</head>
-
-<div class = "header">
-	<div class="icon">
-    [d]<span style="font-family:signpainter;font-size:2em;">i</span>
-  </div>
-  <div class = "nav">
-    <%= link_to(image_tag("homesprite#{@number}.png", :class => "navsprite"), root_url) %>
-    <%= link_to(image_tag("searchsprite#{@number}.png", :class => "navsprite"), tags_path) %>
-    <%= link_to(image_tag("rsssprite#{@number}.png", :class => "navsprite"), "http://www.dressinsouciantly.com/feed?format=rss") %>
-    <%= link_to(image_tag("hamburger#{@number}.png", :class => "hamburger"), ) %>
-  </div>
-  <a href="<%= root_url %>">
-    <%= yield :title %>
-  </a>
-
-  <ul style="margin:0px;">
-  	<li class = "header-menu"><%= link_to "about", about_index_url %></li>
-  	<li class = "header-menu"><%= link_to "sewing", sew_index_url %></li>
-  	<li class = "header-menu"><%= link_to "weaving", weave_index_url %></li>
-  	<li class = "header-menu"><%= link_to "tutorials",learn_index_url %></li>
-  	<li class = "header-menu"><%= link_to "books",read_index_url %></li>
-  </ul>
-</div>
-
-<div class = "fizz">
-  <%= yield :fizz %>
-</div>
-
-<div class = "sidebar">
-  <%= yield :sidebar %>
-</div>
-
-<div class = "content">
-  <%= yield %>
-</div>
-
-<div class = "welcome">
-  <%= yield :welcome %>
-</div>
-
+</body>
 </html>

@@ -20,7 +20,6 @@
 <% end %>
 
 <div style="display:block;width:100%;height:30px;">
-  <div class="fb-like" style="float:left;padding:5px 0 5px 0;" data-href="<%=blog_url(blog)%>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
   <div class="date" style="padding:2px 0 2px 0;">
     <% if blog.status == "posted" %>
       <%= blog.posted_at.strftime("%B %-d, %Y") %>
@@ -42,4 +41,7 @@
 	<% blog.tags.each do |tag| %>
 		<%= render :partial => "shared/tag", :locals => {:tag => tag} %>
 	<% end %>
+</div>
+<div class="fb-like" style="float:left;padding:5px 0 5px 0;" data-href="<%=blog_url(blog)%>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+<div class="fb-comments" data-href="http://www.dressinsouciantly.com/blogs/#{blog.id}" data-width="100%" data-numposts="10">
 </div>
