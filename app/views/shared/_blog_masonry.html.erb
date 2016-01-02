@@ -26,7 +26,7 @@
         <% end %>
         <% if blog.book %>
           <div style="width:80%; margin-left:8%; padding-top:5%;">
-            <%= render :partial => "shared/gr_book", :locals => {:book => blog.book, :info => true} %>
+            <%= render :partial => "shared/gr_book", :locals => {:book => blog.book, :info => true, :recommendation => false} %>
           </div>
         <% elsif (p = blog.not_fizz_photos) %>
           <% rand = Random.new.rand(p.length) %>

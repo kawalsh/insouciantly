@@ -9,7 +9,7 @@
 <% if !@blog.books.blank? %>
   <b>Books:</b><br />
   <% @blog.books.each do |book| %>
-    <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false} %>
+    <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false, :recommendation => false} %>
     <br />
   <% end %>
   <br />

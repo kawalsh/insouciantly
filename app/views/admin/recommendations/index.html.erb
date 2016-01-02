@@ -1,0 +1,27 @@
+<h2>Pending Recommendations</h2>
+<table>
+<% @pending.each do |rec| %>
+  <tr>
+    <td><%= link_to "edit", edit_admin_recommendation_url(rec) %></td>
+    <td><%= rec.recommender %> recommended: </td>
+    <td><%= rec.title %> by <%= rec.author %> </td>
+    <td><%= rec.comment %></td>
+  </tr>
+<% end %>
+</table>
+<hr />
+<h2>All other Recommendations</h2>
+<table>
+<% @recs.each do |rec| %>
+  <tr>
+    <td><%= link_to "edit", edit_admin_recommendation_url(rec) %></td>
+    <td><%= rec.status %></td>
+    <% if rec.book %>
+      <td width="250px"><%= render :partial => "shared/gr_book", :locals => {:book => rec.book, :info => true, :recommendation => false} %></td>
+    <% else %>
+      <td><%= rec.title %> by <%= rec.author %> </td>
+    <% end %>
+    <td><%= rec.comment %></td>
+  </tr>
+<% end %>
+</table>

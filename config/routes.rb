@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :blogs
   resources :projects
   resources :patterns
+  resources :recommendations
   resources :tags
 
   namespace :admin do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     resources :photos
     resources :projects
     resources :patterns
+    resources :recommendations
   end
 
 

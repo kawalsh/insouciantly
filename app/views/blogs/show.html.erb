@@ -40,7 +40,7 @@
   <% if !@blog.books.blank? %>
     <h2>This blog is about a book: </h2>
     <% @blog.books.each do |book| %>
-      <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true} %>
+      <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => true, :recommendation => true} %>
 		<% end %>
 		<br /><br />
 	<% end %>

@@ -1,0 +1,57 @@
+<style>
+	.fizz { display:inline-block; }
+	.sidebar { display:inline-block; }
+	.content { display:inline-block; }
+	.welcome { display:none; }
+</style>
+
+<% content_for :title do %>
+	<h3 class="logo"><span class="verb">[read]</span>Insouciantly </h3>
+<% end %>
+
+<% content_for :fizz do  %>
+	<span class = "fizztext">
+		Recommend A New Book
+	</span>
+	<%= image_tag("bookfizz.jpg", :class => "fizz") %>
+<% end %>
+
+<% content_for :sidebar do %>
+	<h2>Read with Insouciantly!</h2>
+  <br />
+	<%= link_to "Recommend a book!", new_recommendation_url %>
+	<hr />
+	<%= link_to "See All Book Recommendations", recommendations_url %>
+	<hr />
+	<h2>Latest Recommendation:</h2>
+	<%= render :partial => "shared/gr_book", :locals => {:book => @latest_rec.book, :info => true, :recommendation => true} %>
+<% end %>
+<p style="font-style:italic">
+  Once you recommend a book to me it might take me some time to check in on it and add it to the list.
+  Don't worry though, it'll show up eventually. And I'll be super excited to read whatever you suggest!
+  Thanks for recommending any book to me, I really enjoy this social aspect of, well, being an anti-social bookworm.
+  <br />
+  --Kelly
+</p>
+<%= form_for @rec, :url => "/recommendations" do |f| %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </p>
+  <p>
+    Your name
+    <%= f.text_field :recommender %>
+  </p>
+  <p>
+    Why do you think I'll like this book?<br />
+    <%= f.text_area :comment, :size => "50x20" %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

@@ -25,8 +25,8 @@
   <% elsif params[:view] == "books" %>
     <% @books.each do |book| %>
       <% if book.blog.status == "posted" %>
-        <div style = "width:115px; display:inline-block">
-          <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false} %>
+        <div style = "width:250px; display:inline-block">
+          <%= render :partial => "shared/gr_book", :locals => {:book => book, :info => false, :recommendation => false} %>
         </div>
       <% end %>
     <% end %>

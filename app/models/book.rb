@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
 	belongs_to :blog
+	has_many :recommendations
 	require 'open-uri'
 
 	def tags

@@ -1,0 +1,36 @@
+<h1>Edit Recommendation</h1>
+<%= form_for(@rec, :url => url_for(:action=>"update", :controller=>"admin/recommendations", :id =>@rec.id)) do |f| %>
+<p>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :author %>
+  <%= f.text_field :author %>
+</p>
+<p>
+  <%= f.label :recommender %>
+  <%= f.text_field :recommender %>
+</p>
+<p>
+  <%= f.label :comment %><br />
+  <%= f.text_area :comment, :size => "50x20" %>
+</p>
+<p>
+  <%= f.label :book_id %>
+  <%= f.text_field :book_id %>
+</p>
+<p>
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+</p>
+<p>
+  <%= f.submit "Save" %>
+</p>
+<% end %>
+
+<% content_for :sidebar do %>
+  <% if @rec.book %>
+    <%= render :partial => "shared/gr_book", :locals => {:book => @rec.book, :info => true, :recommendation => false} %>
+  <% end %>
+<% end %>

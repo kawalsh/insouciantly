@@ -18,5 +18,5 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <%= render :partial => "shared/gr_book", :locals => {:book => @book, :info => true} %>
+  <%= render :partial => "shared/gr_book", :locals => {:book => @book, :info => true, :recommendation => false} %>
 <% end %>
