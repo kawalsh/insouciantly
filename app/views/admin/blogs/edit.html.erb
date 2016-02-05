@@ -24,6 +24,15 @@
     <%= f.submit "Save" %>
   </p>
 <% end %>
+<% if @blog.book %>
+  <b>Spoiler Text:</b><br />
+  &lt;a class =&quot;anchor&quot; id = &quot;anchor&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;#anchor&quot; onclick=&quot;toggle_visibility('spoilers');&quot;&gt;(read spoilers)&lt;/a&gt;
+&lt;div class=&quot;spoilers&quot; id=&quot;spoilers&quot;&gt;
+omg can you see this?
+&lt;/div&gt;
+&lt;br /&gt;
+<% end %>
 <div>
   <h2>Photos:</h2>
   <%= image_tag(@blog.fizz_photo.filepath, :width => "20%") if @blog.fizz_photo %>

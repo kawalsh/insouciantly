@@ -46,3 +46,12 @@
 <div class="fb-like" data-href="<%=blog_url(blog)%>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
 <div class="fb-comments" data-href="<%=blog_url(blog)%>" data-width="100%" data-numposts="10">
 </div>
+<script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+</script>
