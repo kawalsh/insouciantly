@@ -31,6 +31,9 @@ gem 'spring',      group: :development
 #nokogiri for xml parsing
 gem 'nokogiri'
 
+#friendly-id for sluggable urls
+gem 'friendly_id'
+
 gem 'will_paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -8,11 +8,11 @@ class Admin::PatternsController < ApplicationController
 	end
 
 	def edit
-		@pattern = Pattern.find(params[:id])
+		@pattern = Pattern.friendly.find(params[:id])
 	end
 
 	def update
-		@pattern = Pattern.find(params[:id])
+		@pattern = Pattern.friendly.find(params[:id])
 		respond_to do |format|
 			if @pattern.update_attributes(pattern_params)
 				format.html { redirect_to admin_patterns_url }

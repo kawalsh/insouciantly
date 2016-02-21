@@ -7,7 +7,7 @@ class Admin::BlogsController < ApplicationController
 	end
 
 	def show
-		@blog = Blog.find(params[:id])
+		@blog = Blog.friendly.find(params[:id])
 	end
 
 	def new
@@ -19,7 +19,7 @@ class Admin::BlogsController < ApplicationController
 	end
 
 	def edit
-		@blog = Blog.find(params[:id])
+		@blog = Blog.friendly.find(params[:id])
 		if params[:commit] == "remove_tag"
 			tag = Tag.find(params[:tag])
 			tag.remove_blog(@blog)
@@ -49,7 +49,7 @@ class Admin::BlogsController < ApplicationController
 	end
 
 	def update
-		@blog = Blog.find(params[:id])
+		@blog = Blog.friendly.find(params[:id])
 		respond_to do |format|
     	if @blog.update_attributes(blog_params)
     		format.html { redirect_to edit_admin_blog_path(@blog) }

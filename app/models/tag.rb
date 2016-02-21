@@ -1,7 +1,13 @@
 class Tag < ActiveRecord::Base
+	extend FriendlyId
+  friendly_id :slugged_title, use: :slugged
 	has_and_belongs_to_many :blogs
   has_and_belongs_to_many :photos
   has_and_belongs_to_many :projects
+
+	def slugged_title
+		"#{tag_type} #{tag}"
+	end
 
   def self.find_or_instantiate(tag, tag_type)
     t = Tag.where(:tag => tag, :tag_type => tag_type).first

@@ -1,4 +1,10 @@
 class Pattern < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :slugged_title, use: :slugged
+
+  def slugged_title
+    "#{self.company} #{self.name} review"
+  end
 
   def tag
     return Tag.first(:conditions => "tag_type = 'pattern' and tag = '#{self.name}'")

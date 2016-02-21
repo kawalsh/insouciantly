@@ -10,7 +10,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find(params[:id])
+    @tag = Tag.friendly.find(params[:id])
     if params[:view].nil? or params[:view] == ""
       if @tag.tag_type == "page"
         params[:view] = "blogs"

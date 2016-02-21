@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102205647) do
+ActiveRecord::Schema.define(version: 20160221191539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20160102205647) do
     t.datetime "updated_at"
     t.string   "status",     default: "pending"
     t.datetime "posted_at"
+    t.string   "slug"
   end
+
+  add_index "blogs", ["slug"], name: "index_blogs_on_slug", using: :btree
 
   create_table "blogs_tags", force: true do |t|
     t.integer "blog_id"
@@ -50,7 +53,10 @@ ActiveRecord::Schema.define(version: 20160102205647) do
     t.integer "stars",    default: 0, null: false
     t.text    "review"
     t.string  "man_link"
+    t.string  "slug"
   end
+
+  add_index "patterns", ["slug"], name: "index_patterns_on_slug", using: :btree
 
   create_table "photos", force: true do |t|
     t.string  "filename",                   null: false
@@ -70,7 +76,10 @@ ActiveRecord::Schema.define(version: 20160102205647) do
     t.string   "short_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "projects", ["slug"], name: "index_projects_on_slug", using: :btree
 
   create_table "projects_tags", force: true do |t|
     t.integer "project_id"
@@ -91,6 +100,9 @@ ActiveRecord::Schema.define(version: 20160102205647) do
   create_table "tags", force: true do |t|
     t.string "tag"
     t.string "tag_type"
+    t.string "slug"
   end
+
+  add_index "tags", ["slug"], name: "index_tags_on_slug", using: :btree
 
 end

@@ -7,7 +7,7 @@ class Admin::ProjectsController < ApplicationController
 	end
 
 	def show
-		@project = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 	end
 
 	def new
@@ -19,7 +19,7 @@ class Admin::ProjectsController < ApplicationController
 	end
 
 	def edit
-		@project = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 		if params[:commit] == "remove_tag"
 			tag = Tag.find(params[:tag])
 			tag.remove_project(@project)
@@ -43,7 +43,7 @@ class Admin::ProjectsController < ApplicationController
 	end
 
 	def update
-		@project = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 		respond_to do |format|
     	if @project.update_attributes(project_params)
   			format.html { redirect_to admin_project_path(@project) }

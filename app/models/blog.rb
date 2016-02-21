@@ -1,8 +1,27 @@
 class Blog < ActiveRecord::Base
+	extend FriendlyId
+	friendly_id :slugged_title, use: :slugged
 	belongs_to :project
 	has_many :books
 	has_many :photos
 	has_and_belongs_to_many :tags, -> { order "tags.tag" }
+
+	def slugged_title
+		slug = ""
+		if self.posted_at
+			slug += "#{self.posted_at.strftime('%Y%m%d')} "
+		end
+		if self.page
+			slug += "#{self.page} "
+		end
+		if !self.title.nil?
+			slug += "#{self.title}"
+		end
+		if slug.blank?
+			slug += "#{self.id}-untitled"
+		end
+		return slug
+	end
 
 	def fizz_photo
 		return Photo.where(:blog_id => self.id, :fizz => true).take

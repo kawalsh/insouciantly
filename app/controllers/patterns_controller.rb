@@ -1,7 +1,7 @@
 class PatternsController < ApplicationController
 
   def show
-    @pattern = Pattern.find(params[:id])
+    @pattern = Pattern.friendly.find(params[:id])
     @all_patterns = Pattern.all.order("company ASC")
   end
 
