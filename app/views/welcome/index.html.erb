@@ -1,9 +1,13 @@
-<style>
-	.fizz { display:inline-block; }
-	.sidebar { display:none; }
-	.content { display:none; }
-	.welcome { display:block; }
-</style>
+<% content_for :head do %>
+	<style>
+		.fizz { display:inline-block; }
+		.sidebar { display:none; }
+		.content { display:none; }
+		.welcome { display:block; }
+	</style>
+	<title>Dress Insouciantly - A blog about sewing, weaving, reading</title>
+	<meta name="description" content="Blogging about sewing, fabric, apparel, patterns, weaving, floor looms, yarn, scarves, reading, book reviews, science fiction and fantasy.">
+<% end %>
 
 <% content_for :title do %>
 	<h3 class="logo"><span style="font-family:raleway; font-size:.5em; margin:10px">[dress]</span>Insouciantly </h3>

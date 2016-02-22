@@ -1,9 +1,13 @@
-<style>
-	.fizz { display:inline-block; }
-	.sidebar { display:inline-block; }
-	.content { display:inline-block; }
-	.welcome { display:none; }
-</style>
+<% content_for :head do %>
+	<style>
+		.fizz { display:inline-block; }
+		.sidebar { display:inline-block; }
+		.content { display:inline-block; }
+		.welcome { display:none; }
+	</style>
+	<title>Dress Insouciantly - About the Author</title>
+	<meta name="description" content="I'm a blogger who uses Ruby on Rails, loves to sew and weave and write and read. And I write about things like web development, loom weaving techniques, sewing clothing, apparel and costumes.">
+<% end %>
 
 <% content_for :title do %>
 	<h3 class="logo"><span class="verb">[about]</span>Insouciantly </h3>

@@ -1,9 +1,13 @@
-<style>
-	.fizz { display:inline-block; }
-	.sidebar { display:inline-block; }
-	.content { display:inline-block; }
-	.welcome { display:none; }
-</style>
+<% content_for :head do %>
+	<style>
+		.fizz { display:inline-block; }
+		.sidebar { display:inline-block; }
+		.content { display:inline-block; }
+		.welcome { display:none; }
+	</style>
+	<title>Dress Insouciantly - <%= @project.name %> Project</title>
+	<meta name="description" content=<%= "#{@project.short_description}" %>>
+<% end %>
 
 <% content_for :title do %>
 	<h3 class="logo"><span class="verb">[make]</span>Insouciantly </h3>

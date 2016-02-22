@@ -96,4 +96,11 @@ class Blog < ActiveRecord::Base
 		return tags
 	end
 
+	def google_analytics_meta_description
+		str = "A blog about sewing, weaving, crafting reading: "
+		self.tags.each do |t|
+			str += "#{t.tag}, "
+		end
+		return str
+	end
 end

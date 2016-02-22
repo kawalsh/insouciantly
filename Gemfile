@@ -34,6 +34,9 @@ gem 'nokogiri'
 #friendly-id for sluggable urls
 gem 'friendly_id'
 
+#factory_girl for testing factories
+gem "factory_girl_rails", "~> 4.0"
+
 gem 'will_paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

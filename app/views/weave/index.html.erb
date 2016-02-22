@@ -1,9 +1,13 @@
-<style>
-	.fizz { display:inline-block; }
-	.sidebar { display:inline-block; }
-	.content { display:inline-block; }
-	.welcome { display:none; }
-</style>
+<% content_for :head do %>
+	<style>
+		.fizz { display:inline-block; }
+		.sidebar { display:inline-block; }
+		.content { display:inline-block; }
+		.welcome { display:none; }
+	</style>
+	<title>Dress Insouciantly - Weaving Blog</title>
+	<meta name="description" content="blog about weaving techniques, floor weaving, scarves, yarn">
+<% end %>
 
 <% content_for :title do %>
 	<h3 class="logo"><span class="verb">[weave]</span>Insouciantly </h3>

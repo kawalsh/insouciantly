@@ -1,9 +1,13 @@
-<style>
-	.fizz { display:inline-block; }
-	.sidebar { display:inline-block; }
-	.content { display:inline-block; }
-	.welcome { display:none; }
-</style>
+<% content_for :head do %>
+	<style>
+		.fizz { display:inline-block; }
+		.sidebar { display:inline-block; }
+		.content { display:inline-block; }
+		.welcome { display:none; }
+	</style>
+	<title>Dress Insouciantly - Book Reivews</title>
+	<meta name="description" content="blogging about book reviews, science fiction, fantasy, young adult, steampunk">
+<% end %>
 
 <% content_for :title do %>
 	<h3 class="logo"><span class="verb">[read]</span>Insouciantly </h3>
