@@ -1,0 +1,19 @@
+<div style="margin:10px; display:inline-block">
+  <div itemscope itemtype="http://schema.org/Product">
+    <%= render partial: "shared/book_stars", locals: {stars: pattern.stars, size:"1.5"} %><br />
+    <%= link_to(image_tag(pattern.line_art, :width => "150px", :itemprop => "image"), pattern_path(pattern)) %><br />
+    <meta itemprop="url" content="<%= pattern.man_link %>" />
+    <meta itemprop="name" content="<%= pattern.name %>" />
+    <meta itemprop="brand" content="<%= pattern.company %>" />
+    <meta itemprop="category" content="sewing pattern" />
+    <div itemprop="review" itemscope itemtype="http://schema.org/Review">
+      <meta itemprop="name" content="Kelly Reviews <%= pattern.name %>" />
+      <meta itemprop="author" content="Insouciantly" />
+      <meta itemprop="description" content="<%= strip_tags(pattern.review) %>" />
+      <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+        <meta itemprop="ratingValue" content="<%= pattern.stars %>" />
+      </div>
+        <%= link_to "#{pattern.company} #{pattern.name}", pattern_path(pattern) %>
+    </div>
+  </div>
+</div>
