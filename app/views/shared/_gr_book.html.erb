@@ -1,32 +1,42 @@
 <% unless book.gr_id.nil? %>
-  <% book_info = book.gr_api %>
-  <% if book_info %>
-    <div class="book_image">
-      <%= link_to image_tag("#{book_info[:img_url]}", :width => "95%"), blog_url(book.blog) %>
-    </div>
-    <div class="book_info">
-      <% if recommendation && !book.recommendations.blank? %>
-        <h5><%= book.recommendations[0].status %></h5>
-      <% end %>
-      <%= link_to book_info[:title], book_info[:link] %><br />
-      by <%= link_to book_info[:author], book_info[:author_url] %><br />
-      <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => ".8", :white => false} %>
-      <% if !recommendation && !book.recommendations.blank? %>
-        <%= link_to "Recommended by", recommendations_url %>:
-        <%= book.recommendations[0].recommender %>
-      <% end %>
-    </div>
-  <% else %>
-    <div width="100%; padding-right:5px">
-      <%= link_to "Goodreads API down", blog_url(book.blog) %><br />
-      <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => ".8", :white => false} %>
-    </div>
-  <% end %>
-  <% if recommendation && !book.recommendations.blank? %>
-    <b>Recommended by: <%= book.recommendations[0].recommender %></b><br />
-    <%= book.recommendations[0].comment %>
-    <% if book.recommendations[0].status == "reviewed" %>
-      <br /><%= link_to "Read my review!", blog_url(book.blog) %>
+  <div itemscope itemtype="http://schema.org/Book">
+    <% book_info = book.gr_api %>
+    <% if book_info %>
+      <div class="book_image">
+        <%= link_to image_tag("#{book_info[:img_url]}", :width => "95%"), blog_url(book.blog), :itemprop => "image" %>
+      </div>
+      <div class="book_info">
+        <% if recommendation && !book.recommendations.blank? %>
+          <h5><%= book.recommendations[0].status %></h5>
+        <% end %>
+        <%= link_to book_info[:title], book_info[:link], :itemprop => "name" %><br />
+        by <%= link_to book_info[:author], book_info[:author_url], :itemprop => "author" %><br />
+        <meta itemprop="url" content="<%= book_info[:link] %>" />
+        <div itemprop="review" itemscope itemtype="http://schema.org/Review">
+          <meta itemprop="name" content="Kelly Reviews <%= book_info[:title] %>" />
+          <meta itemprop="description" content="<%= strip_tags(book.blog.body) %>" />
+          <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            <meta itemprop="ratingValue" content="<%= book.stars %>" />
+            <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => ".8", :white => false} %>
+          </div>
+        </div>
+        <% if !recommendation && !book.recommendations.blank? %>
+          <%= link_to "Recommended by", recommendations_url %>:
+          <%= book.recommendations[0].recommender %>
+        <% end %>
+      </div>
+    <% else %>
+      <div width="100%; padding-right:5px">
+        <%= link_to "Goodreads API down", blog_url(book.blog) %><br />
+        <%= render :partial => "shared/book_stars", :locals => {:stars => book.stars, :size => ".8", :white => false} %>
+      </div>
     <% end %>
-  <% end %>
+    <% if recommendation && !book.recommendations.blank? %>
+      <b>Recommended by: <%= book.recommendations[0].recommender %></b><br />
+      <%= book.recommendations[0].comment %>
+      <% if book.recommendations[0].status == "reviewed" %>
+        <br /><%= link_to "Read my review!", blog_url(book.blog) %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>

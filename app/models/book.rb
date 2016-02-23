@@ -23,4 +23,5 @@ class Book < ActiveRecord::Base
 		end
 		return false
 	end
+
 end

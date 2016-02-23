@@ -7,6 +7,7 @@
 	</style>
 	<title>Dress Insouciantly - <%= @blog.title %></title>
 	<meta name="description" content="<%= @blog.google_analytics_meta_description %>">
+	<%#= render :partial => 'shared/schema_org_meta_data', :locals => {:blog => @blog} %>
 <% end %>
 
 <% content_for :title do %>
