@@ -3,7 +3,8 @@
 <% end %>
 
 <h2>
-	<%= link_to "edit", edit_admin_blog_path(@blog) %> >> 
+  Blog #<%= @blog.id %> >>
+	<%= link_to "edit", edit_admin_blog_path(@blog) %> >>
   <%= link_to "post", edit_admin_blog_path(@blog, :commit => "publish") %>
 </h2>
 <div>
